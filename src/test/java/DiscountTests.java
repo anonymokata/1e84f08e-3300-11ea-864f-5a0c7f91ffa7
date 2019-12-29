@@ -19,7 +19,13 @@ public class DiscountTests {
 
     @Test
     public void validateThatADiscountHasBeenCreated() {
-        Discount discount = new Discount("Soup", 99, 2, Discount.DiscountType.Markdown, Discount.ValueType.Currency);
-        assertEquals(discount, discountService.createDiscount("Soup", 99, 2, "Markdown", "Currency"));
+        Discount discount = new Discount("Soup","Markdown For Soup", 99, 2, Discount.DiscountType.Markdown, Discount.ValueType.Currency);
+        assertEquals(discount, discountService.createDiscount("Soup", "Markdown For Soup", 99, 2, "Markdown", "Currency"));
+    }
+
+    @Test
+    public void validateThatADiscountCanBeRemoved() {
+        discountService.createDiscount("Soup", "Markdown For Soup", 99, 2, "Markdown", "Currency");
+        assertEquals("Successfully removed Markdown For Soup from the discount list.", discountService.removeDiscount("Soup", "Markdown For Soup"));
     }
 }

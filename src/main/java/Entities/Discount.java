@@ -4,14 +4,16 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 
 public class Discount {
     String productIdAssociated;
+    String uniqueDiscountName;
     int valueBasedOnDiscountType;
     int quantityRequiredTriggerDiscount;
     int valueOfBulkItems;
     DiscountType discountType;
     ValueType valueType;
 
-    public Discount(String productIdAssociated, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType) {
+    public Discount(String productIdAssociated,String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType) {
         this.productIdAssociated = productIdAssociated;
+        this.uniqueDiscountName = uniqueDiscountName;
         this.valueBasedOnDiscountType = valueBasedOnDiscountType;
         this.quantityRequiredTriggerDiscount = quantityRequiredTriggerDiscount;
         this.discountType = discountType;
@@ -24,6 +26,14 @@ public class Discount {
 
     public void setProductIdAssociated(String productIdAssociated) {
         this.productIdAssociated = productIdAssociated;
+    }
+
+    public String getUniqueDiscountName() {
+        return uniqueDiscountName;
+    }
+
+    public void setUniqueDiscountName(String uniqueDiscountName) {
+        this.uniqueDiscountName = uniqueDiscountName;
     }
 
     public int getValueBasedOnDiscountType() {
