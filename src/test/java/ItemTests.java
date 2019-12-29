@@ -18,8 +18,14 @@ public class ItemTests {
     }
 
     @Test
-    public void validateItemCreationForInventoryAddition() {
+    public void validateThatAUnitBasedProductCanBeCreated() {
         Product product = new Product("Tomato Soup", Product.PricingMethod.Unit, 99);
         assertEquals(product, itemService.createItem("Tomato Soup", "Unit", 99));
+    }
+
+    @Test
+    public void validateThatAWeightBasedProductCanBeCreate() {
+        Product product = new Product("Carved Turkey", Product.PricingMethod.Weighted, 99, 1200);
+        assertEquals(product, itemService.createItem("Carved Turkey", "Weighted", 99, 1200));
     }
 }

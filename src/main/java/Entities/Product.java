@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 public class Product {
     private String productId;
     private PricingMethod productPricingMethod;
-    private int productCost;
+    private int productCostPerPricingMethod;
     private int productWeightIfWeighted;
 
 
@@ -14,10 +14,17 @@ public class Product {
         First Constructor will be used to assign properties of a product that
         is not priced based on weight.
      */
-    public Product(String productId, PricingMethod productPricingMethod, int productCost) {
+    public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod) {
         this.productId = productId;
         this.productPricingMethod = productPricingMethod;
-        this.productCost = productCost;
+        this.productCostPerPricingMethod = productCostPerPricingMethod;
+    }
+
+    public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod, int productWeightIfWeighted) {
+        this.productId = productId;
+        this.productPricingMethod = productPricingMethod;
+        this.productCostPerPricingMethod = productCostPerPricingMethod;
+        this.productWeightIfWeighted = productWeightIfWeighted;
     }
 
     public String getProductId() {
@@ -36,12 +43,12 @@ public class Product {
         this.productPricingMethod = productPricingMethod;
     }
 
-    public int getProductCost() {
-        return productCost;
+    public int getProductCostPerPricingMethod() {
+        return productCostPerPricingMethod;
     }
 
-    public void setProductCost(int productCost) {
-        this.productCost = productCost;
+    public void setProductCostPerPricingMethod(int productCostPerPricingMethod) {
+        this.productCostPerPricingMethod = productCostPerPricingMethod;
     }
 
     public int getProductWeightIfWeighted() {

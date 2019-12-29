@@ -22,4 +22,10 @@ public class ItemService {
         productInventory.put(product.getProductId(), product);
         return product;
     }
+
+    public Product createItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, int productWeightIfWeighted) {
+        Product product = new Product(productId, Product.PricingMethod.valueOf(productPricingMethod), costOfProductPerPricingMethod, productWeightIfWeighted);
+        productInventory.put(product.getProductId(), product);
+        return product;
+    }
 }
