@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 
 
-public class ItemService {
+public class InventoryService {
 
     private HashMap<String, Product> productInventory = new HashMap<String, Product>();
 
