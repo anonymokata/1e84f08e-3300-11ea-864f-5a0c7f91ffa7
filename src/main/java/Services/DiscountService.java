@@ -15,8 +15,8 @@ public class DiscountService {
         HashMap will be used to store a list of discounts for each productId
      */
     public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
-    public Discount createDiscount(String productIdAssociatedToDiscount) {
-        Discount discount = new Discount();
+    public Discount createDiscount(String productIdAssociatedToDiscount, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, String discountType, String valueType) {
+        Discount discount = new Discount(productIdAssociatedToDiscount, valueBasedOnDiscountType, quantityRequiredTriggerDiscount, Discount.DiscountType.valueOf(discountType), Discount.ValueType.valueOf(valueType));
 
         if (allActiveDiscounts.size() > 0 && allActiveDiscounts.containsKey(productIdAssociatedToDiscount)) {
             allActiveDiscounts.get(discount.getProductIdAssociated()).add(discount);
