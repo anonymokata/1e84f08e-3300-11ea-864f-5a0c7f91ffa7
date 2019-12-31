@@ -54,15 +54,16 @@ public class CartProductTests {
 
     @Test
     public void validateCorrectTotalProducedFromCartWithoutDiscount() {
-        Product tomatoSoup = new Product("Tomato Soup", Product.PricingMethod.Unit, 100);
+        Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
 
-        checkoutService.scanItem(tomatoSoup);
+        checkoutService.scanItem(groundBeef, 1.0);
         checkoutService.scanItem(chickenSoup);
         checkoutService.scanItem(potatoSoup);
 
         assertEquals(300, checkoutService.calculateTotal());
 
     }
+
 }
