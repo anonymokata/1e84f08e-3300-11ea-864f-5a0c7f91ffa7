@@ -15,7 +15,7 @@ public class ProductInventoryTests {
 
     @Before
     public void setUp() {
-        inventoryService = new InventoryService();
+        inventoryService = InventoryService.getInstance();
     }
 
     @Test

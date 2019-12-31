@@ -15,7 +15,7 @@ public class DiscountTests {
 
     @Before
     public void setUp() {
-        discountService = new DiscountService();
+        discountService = DiscountService.getInstance();
     }
 
 

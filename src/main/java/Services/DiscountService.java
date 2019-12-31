@@ -168,4 +168,14 @@ public class DiscountService {
         }
         return discounts;
     }
+
+    private static DiscountService obj;
+
+    private DiscountService() {}
+
+    public static synchronized DiscountService getInstance() {
+        if (obj == null)
+            obj = new DiscountService();
+        return obj;
+    }
 }

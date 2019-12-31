@@ -9,8 +9,8 @@ import static Services.DiscountService.allActiveDiscounts;
 
 public class CheckoutService {
     HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
-    DiscountService discountService = new DiscountService();
-    InventoryService inventoryService = new InventoryService();
+    DiscountService discountService = DiscountService.getInstance();
+    InventoryService inventoryService = InventoryService.getInstance();
     private int currentTotal;
 
     public HashMap<String, List<Product>> scanItem(Product scannedProduct) {
@@ -100,6 +100,16 @@ public class CheckoutService {
            }
        }
        return calculateTotal();
+    }
+
+    private static CheckoutService obj;
+
+    private CheckoutService() {}
+
+    public static synchronized CheckoutService getInstance() {
+        if (obj == null)
+            obj = new CheckoutService();
+        return obj;
     }
 
 }

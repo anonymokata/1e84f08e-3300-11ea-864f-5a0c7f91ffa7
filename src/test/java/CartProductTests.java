@@ -23,9 +23,9 @@ public class CartProductTests {
 
     @Before
     public void setUp() {
-        inventoryService = new InventoryService();
-        checkoutService = new CheckoutService();
-        discountService = new DiscountService();
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
     }
     @Test
     public void validateThatProductsBeingScannedAreAddedToCheckoutCart() {

@@ -43,4 +43,14 @@ public class InventoryService {
     public Product getProductFromInventory(String productId) {
         return productInventory.get(productId);
     }
+
+    private static InventoryService obj;
+
+    private InventoryService() {}
+
+    public static synchronized InventoryService getInstance() {
+        if (obj == null)
+            obj = new InventoryService();
+        return obj;
+    }
 }

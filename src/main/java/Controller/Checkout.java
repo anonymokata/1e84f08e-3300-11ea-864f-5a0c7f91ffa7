@@ -15,20 +15,25 @@ public class Checkout {
          - Delete Item at Checkout. Return value should be void or a success response string for item in the cart removal.
      */
 
-    InventoryService inventoryService = new InventoryService();
-    CheckoutService checkoutService = new CheckoutService();
-    DiscountService discountService = new DiscountService();
+    static InventoryService inventoryService = InventoryService.getInstance();
+    static CheckoutService checkoutService = CheckoutService.getInstance();
+    static DiscountService discountService = DiscountService.getInstance();
 
-    public void createInventoryItem(String productId, String pricingMethod, int cost) {
-        inventoryService.createInventoryProduct(productId, pricingMethod, cost);
+    //Make this class a singleton so that the services aren't instantied at every call.
+
+    public void createInventoryItem(String productId, String pricingMethod, double costOfProductPerPricingMethod) {
+        int costTranslated = (int) costOfProductPerPricingMethod;
+        inventoryService.createInventoryProduct(productId, pricingMethod, costTranslated);
     }
 
-    public void createInventoryItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, int productWeightIfWeighted) {
-        inventoryService.createInventoryProduct(productId, productPricingMethod, costOfProductPerPricingMethod, productWeightIfWeighted);
+    public void createInventoryItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, double productWeightIfWeighted) {
+        int costTranslated = (int) costOfProductPerPricingMethod;
+        inventoryService.createInventoryProduct(productId, productPricingMethod, costOfProductPerPricingMethod, costTranslated);
     }
 
-    public void createDiscount(String productId, String uniqueDiscountId, int discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType) {
-        discountService.createDiscount(productId, uniqueDiscountId, discountValue, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
+    public void createDiscount(String productId, String uniqueDiscountId, double discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType) {
+        int valueTranslated = (int) discountValue;
+        discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
     }
 
     //Used to scan a Per Unit Item
@@ -45,5 +50,15 @@ public class Checkout {
 
     public void deleteAnItemAtCheckout(String productId, int itemQuantityToBeRemoved) {
         checkoutService.deleteItemFromCart(productId, itemQuantityToBeRemoved);
+    }
+
+    private static Checkout obj;
+
+    private Checkout() {}
+
+    public static synchronized Checkout getInstance() {
+        if (obj == null)
+            obj = new Checkout();
+        return obj;
     }
 }
