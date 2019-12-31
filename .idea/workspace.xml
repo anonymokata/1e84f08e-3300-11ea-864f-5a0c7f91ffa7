@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+            <state relative-caret-position="470">
+              <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#665#688#0" expanded="true" />
@@ -114,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="52" column="80" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
+            <state relative-caret-position="413">
+              <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1265#1274#0" expanded="true" />
@@ -164,8 +164,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -256,12 +256,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount">
+  <component name="RunManager" selected="JUnit.CartProductTests.validateItemRemovalFromCartAndCalculateTotal">
     <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CartProductTests" />
       <option name="METHOD_NAME" value="validateCorrectTotalProducedFromCartWithoutDiscount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CartProductTests.validateItemRemovalFromCartAndCalculateTotal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CartProductTests" />
+      <option name="METHOD_NAME" value="validateItemRemovalFromCartAndCalculateTotal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -296,23 +306,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscountTests.validateThatADiscountHasBeenCreated" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="DiscountTests" />
-      <option name="METHOD_NAME" value="validateThatADiscountHasBeenCreated" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CartProductTests.validateItemRemovalFromCartAndCalculateTotal" />
         <item itemvalue="JUnit.CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" />
         <item itemvalue="JUnit.CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" />
         <item itemvalue="JUnit.DiscountTests.validateThatADiscountCanBeRemoved" />
         <item itemvalue="JUnit.DiscountTests" />
-        <item itemvalue="JUnit.DiscountTests.validateThatADiscountHasBeenCreated" />
       </list>
     </recent_temporary>
   </component>
@@ -327,17 +327,11 @@
       <option name="presentableId" value="Default" />
       <updated>1577658206480</updated>
       <workItem from="1577658210439" duration="6652000" />
-      <workItem from="1577767398704" duration="1590000" />
+      <workItem from="1577767398704" duration="1868000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.30 at 23h 44m 58s.xml">
-      <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.30 at 23h 46m 04s.xml">
-      <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.30 at 23h 46m 59s.xml">
       <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
     </history-entry>
@@ -362,15 +356,21 @@
     <history-entry file="CartProductTests_validateCorrectTotalProducedFromCartWithoutDiscount - 2019.12.31 at 00h 09m 41s.xml">
       <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CartProductTests_validateCorrectTotalProducedFromCartWithoutDiscount - 2019.12.31 at 00h 09m 52s.xml">
+      <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests_validateCorrectTotalProducedFromCartWithoutDiscount - 2019.12.31 at 00h 10m 08s.xml">
+      <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8242000" />
+    <option name="totallyTimeSpent" value="8520000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1020" y="34" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14285715" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29321662" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -379,7 +379,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33044422" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33044422" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3954496" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -387,7 +387,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32603937" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32822758" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32719395" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -511,8 +511,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="52" column="80" selection-start-line="52" selection-start-column="80" selection-end-line="52" selection-end-column="80" />
+        <state relative-caret-position="413">
+          <caret line="73" column="51" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1265#1274#0" expanded="true" />
@@ -522,8 +522,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+        <state relative-caret-position="470">
+          <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#665#688#0" expanded="true" />

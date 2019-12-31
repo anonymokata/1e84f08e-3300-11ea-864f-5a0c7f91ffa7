@@ -57,4 +57,23 @@ public class CheckoutService {
 
            return costBeforeApplieDiscounts;
         }
+
+
+        public int deleteItemFromCart(String productId, int quantity) {
+
+           for (int i = 0; i < quantity; i++) {
+               if (checkoutCart.containsKey(productId)) {
+                   if (checkoutCart.size() == 1) {
+                       checkoutCart = null;
+
+                   } else {
+                       //Statically setting index for removal becuase the index will always be zero.
+                       checkoutCart.get(productId).remove(0);
+                   }
+               }
+           }
+
+           return calculateTotal();
+        }
+
 }
