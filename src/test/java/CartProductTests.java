@@ -5,9 +5,11 @@ import Services.DiscountService;
 import Services.InventoryService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.FilterFactory;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,13 +24,24 @@ public class CartProductTests {
     DiscountService discountService;
 
     @Before
-    public void setUp() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
+    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
+        Field checkoutInstance = CheckoutService.class.getDeclaredField("obj");
+        Field discountInstance = DiscountService.class.getDeclaredField("obj");
+        inventoryInstance.setAccessible(true);
+        checkoutInstance.setAccessible(true);
+        discountInstance.setAccessible(true);
+
+        inventoryInstance.set(null, null);
+        checkoutInstance.set(null, null);
+        discountInstance.set(null, null);
     }
     @Test
     public void validateThatProductsBeingScannedAreAddedToCheckoutCart() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
+
         HashMap<String, List<Product>> cartAtCheckout = new HashMap<String, List<Product>>();
 
         Product productA = new Product("Tomato Soup", Product.PricingMethod.Unit, 99);
@@ -54,10 +67,16 @@ public class CartProductTests {
         checkoutService.scanItem(chickenSoup);
 
         assertEquals(cartAtCheckout, checkoutService.scanItem(chickenSoup));
+        inventoryService = null;
+        checkoutService = null;
+        discountService = null;
     }
 
     @Test
     public void validateCorrectTotalProducedFromCartWithoutDiscount() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
@@ -67,11 +86,16 @@ public class CartProductTests {
         checkoutService.scanItem(potatoSoup);
 
         assertEquals(300, checkoutService.calculateTotal());
-
+        inventoryService = null;
+        checkoutService = null;
+        discountService = null;
     }
 
     @Test
     public void validateItemRemovalFromCartAndCalculateTotal() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
@@ -81,11 +105,16 @@ public class CartProductTests {
         checkoutService.scanItem(potatoSoup);
 
         assertEquals(200, checkoutService.deleteItemFromCart("Ground Beef", 1));
-
+        inventoryService = null;
+        checkoutService = null;
+        discountService = null;
     }
 
     @Test
     public void validateThatDiscountsAreAppliedAtCheckout() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
@@ -103,5 +132,8 @@ public class CartProductTests {
 
 
         assertEquals(630, checkoutService.calculateTotal());
+        inventoryService = null;
+        checkoutService = null;
+        discountService = null;
     }
 }

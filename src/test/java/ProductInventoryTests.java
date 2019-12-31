@@ -1,9 +1,13 @@
 import Entities.Product;
+import Services.CheckoutService;
+import Services.DiscountService;
 import Services.InventoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import java.lang.reflect.Field;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotSame;
@@ -16,6 +20,14 @@ public class ProductInventoryTests {
     @Before
     public void setUp() {
         inventoryService = InventoryService.getInstance();
+    }
+
+    @Before
+    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
+        inventoryInstance.setAccessible(true);
+
+        inventoryInstance.set(null, null);
     }
 
     @Test

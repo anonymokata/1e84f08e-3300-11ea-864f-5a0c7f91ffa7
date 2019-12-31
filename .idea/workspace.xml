@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="085f3049-3670-4151-b2f7-ec9f8a1af1ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Kata.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/Checkout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/InventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CartProductTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CartProductTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DiscountTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DiscountTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ProductInventoryTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProductInventoryTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Services/CheckoutService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/CheckoutService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Services/InventoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Services/InventoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/CartProductTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/CartProductTests.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/DiscountTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+            <state relative-caret-position="714">
+              <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
+            <state relative-caret-position="78">
+              <caret line="25" selection-start-line="25" selection-end-line="37" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -103,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Kata.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -171,9 +165,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Controller/Checkout.java" />
         <option value="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" />
         <option value="$PROJECT_DIR$/src/test/java/ProductInventoryTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Kata.java" />
         <option value="$PROJECT_DIR$/src/test/java/CartProductTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/DiscountTests.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Kata.java" />
       </list>
     </option>
   </component>
@@ -277,19 +271,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Kata">
-    <configuration name="Kata" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Kata" />
-      <module name="CheckoutOrderTotal" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.ProductInventoryTests">
     <configuration name="CartProductTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CartProductTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CartProductTests" />
+      <option name="METHOD_NAME" value="validateThatProductsBeingScannedAreAddedToCheckoutCart" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -324,11 +321,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Kata" />
-        <item itemvalue="JUnit.CartProductTests" />
         <item itemvalue="JUnit.ProductInventoryTests" />
         <item itemvalue="JUnit.DiscountTests.validateThatADiscountHasBeenCreated" />
         <item itemvalue="JUnit.DiscountTests" />
+        <item itemvalue="JUnit.CartProductTests" />
+        <item itemvalue="JUnit.CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" />
       </list>
     </recent_temporary>
   </component>
@@ -344,32 +341,11 @@
       <updated>1577658206480</updated>
       <workItem from="1577658210439" duration="6652000" />
       <workItem from="1577767398704" duration="12820000" />
-      <workItem from="1577827818202" duration="522000" />
+      <workItem from="1577827818202" duration="1292000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DiscountTests - 2019.12.31 at 02h 51m 36s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests - 2019.12.31 at 02h 52m 53s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests - 2019.12.31 at 02h 53m 31s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests - 2019.12.31 at 02h 53m 56s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests_validateThatADiscountHasBeenCreated - 2019.12.31 at 02h 53m 59s.xml">
-      <configuration name="DiscountTests.validateThatADiscountHasBeenCreated" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests_validateThatADiscountHasBeenCreated - 2019.12.31 at 02h 54m 15s.xml">
-      <configuration name="DiscountTests.validateThatADiscountHasBeenCreated" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="DiscountTests - 2019.12.31 at 02h 54m 17s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="DiscountTests_validateThatADiscountHasBeenCreated - 2019.12.31 at 02h 54m 58s.xml">
       <configuration name="DiscountTests.validateThatADiscountHasBeenCreated" configurationId="JUnit" />
     </history-entry>
@@ -379,9 +355,30 @@
     <history-entry file="CartProductTests - 2019.12.31 at 02h 55m 14s.xml">
       <configuration name="CartProductTests" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CartProductTests - 2019.12.31 at 16h 40m 48s.xml">
+      <configuration name="CartProductTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests - 2019.12.31 at 16h 42m 53s.xml">
+      <configuration name="CartProductTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests - 2019.12.31 at 16h 44m 32s.xml">
+      <configuration name="CartProductTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.31 at 16h 44m 40s.xml">
+      <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests_validateCorrectTotalProducedFromCartWithoutDiscount - 2019.12.31 at 16h 44m 43s.xml">
+      <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests_validateThatDiscountsAreAppliedAtCheckout - 2019.12.31 at 16h 44m 47s.xml">
+      <configuration name="CartProductTests.validateThatDiscountsAreAppliedAtCheckout" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartProductTests - 2019.12.31 at 16h 48m 46s.xml">
+      <configuration name="CartProductTests" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19994000" />
+    <option name="totallyTimeSpent" value="20764000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -396,8 +393,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.2708559" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2708559" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -406,7 +403,10 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32502708" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32502708" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32394367" />
+      <window_info anchor="right" id="JSF" />
+      <window_info anchor="right" id="CDI" />
+      <window_info anchor="right" id="Bean Validation" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -590,26 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="55" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/DiscountTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Checkout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -623,7 +603,27 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Kata.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="25" selection-start-line="25" selection-end-line="37" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/DiscountTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="44" column="56" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
