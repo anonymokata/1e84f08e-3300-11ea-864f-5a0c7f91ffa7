@@ -44,6 +44,9 @@ public class InventoryService {
         return productInventory.get(productId);
     }
 
+
+    //Singleton implementation
+    /*************************************************************************************/
     private static InventoryService obj;
 
     private InventoryService() {}

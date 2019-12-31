@@ -52,6 +52,9 @@ public class Checkout {
         checkoutService.deleteItemFromCart(productId, itemQuantityToBeRemoved);
     }
 
+    //Singleton implementation
+    /*************************************************************************************/
+
     private static Checkout obj;
 
     private Checkout() {}
@@ -61,4 +64,6 @@ public class Checkout {
             obj = new Checkout();
         return obj;
     }
+
+    /*************************************************************************************/
 }

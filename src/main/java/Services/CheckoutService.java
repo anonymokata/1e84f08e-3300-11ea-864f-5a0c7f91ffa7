@@ -102,6 +102,8 @@ public class CheckoutService {
        return calculateTotal();
     }
 
+    //Singleton implementation
+    /*************************************************************************************/
     private static CheckoutService obj;
 
     private CheckoutService() {}

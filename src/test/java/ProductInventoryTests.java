@@ -26,7 +26,6 @@ public class ProductInventoryTests {
     public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
         Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
         inventoryInstance.setAccessible(true);
-
         inventoryInstance.set(null, null);
     }
 

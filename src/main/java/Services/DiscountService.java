@@ -169,6 +169,8 @@ public class DiscountService {
         return discounts;
     }
 
+    //Singleton implementation
+    /*************************************************************************************/
     private static DiscountService obj;
 
     private DiscountService() {}
