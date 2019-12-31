@@ -1,6 +1,7 @@
 package Entities;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class Product {
     private String productId;
@@ -75,5 +76,13 @@ public class Product {
         return new EqualsBuilder()
                 .append(productId, product.productId)
                 .isEquals();
+    }
+
+    //To compare different hashMaps, the hashcode method must be overridden.
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(productId)
+                .toHashCode();
     }
 }

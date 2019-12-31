@@ -16,7 +16,6 @@ public class DiscountService {
      */
     public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
 
-
     public Discount createDiscount(String productIdAssociatedToDiscount, String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, String discountType, String valueType) {
         Discount discount = new Discount(productIdAssociatedToDiscount, uniqueDiscountName, valueBasedOnDiscountType, quantityRequiredTriggerDiscount, Discount.DiscountType.valueOf(discountType), Discount.ValueType.valueOf(valueType));
 
@@ -34,6 +33,9 @@ public class DiscountService {
 
     public String removeDiscount(String productIdAssociatedToDiscount, String uniqueDiscountName) {
         String response = "";
+
+        //Accounts for Null Pointers, and checks if the discount that has been entered for deletion exists.
+        //Removes discount or nullifies the HashMap of discounts if the size is 1.
         for (Discount d : allActiveDiscounts.get(productIdAssociatedToDiscount)) {
             if (d.getUniqueDiscountName() == uniqueDiscountName) {
                 if (allActiveDiscounts.get(productIdAssociatedToDiscount).size() > 1) {
