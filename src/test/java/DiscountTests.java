@@ -1,5 +1,6 @@
 import Entities.Discount;
 import Services.DiscountService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,15 +18,21 @@ public class DiscountTests {
         discountService = new DiscountService();
     }
 
+
+
     @Test
     public void validateThatADiscountHasBeenCreated() {
         Discount discount = new Discount("Soup","Markdown For Soup", 99, 2, Discount.DiscountType.Markdown, Discount.ValueType.Currency);
         assertEquals(discount, discountService.createDiscount("Soup", "Markdown For Soup", 99, 2, "Markdown", "Currency"));
     }
 
+
+
     @Test
     public void validateThatADiscountCanBeRemoved() {
         discountService.createDiscount("Soup", "Markdown For Soup", 99, 2, "Markdown", "Currency");
         assertEquals("Successfully removed Markdown For Soup from the discount list.", discountService.removeDiscount("Soup", "Markdown For Soup"));
+
     }
+
 }

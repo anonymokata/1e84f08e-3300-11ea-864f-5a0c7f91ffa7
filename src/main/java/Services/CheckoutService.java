@@ -64,8 +64,12 @@ public class CheckoutService {
            }
 
            // If the cost after a discount has been applied is less than the cost before discount, then the cost per item will be with discounts applied. Else, it will be the original price.
-
-           int costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+           int costPerItem = 0;
+           if (costAfterAppliedDiscounts == 0) {
+               costPerItem = checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+           } else {
+                costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+           }
             currentTotal = currentTotal + (costPerItem);
        }
 
@@ -82,7 +86,11 @@ public class CheckoutService {
                    checkoutCart = null;
                } else {
                    //Statically setting index for removal becuase the index will always be zero.
-                   checkoutCart.get(productId).remove(0);
+                   if (checkoutCart.get(productId).size() == 1) {
+                       checkoutCart.remove(productId);
+                   } else {
+                       checkoutCart.get(productId).remove(0);
+                   }
                }
            }
        }
