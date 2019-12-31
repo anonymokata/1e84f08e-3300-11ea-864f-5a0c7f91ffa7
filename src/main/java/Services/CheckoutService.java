@@ -1,14 +1,18 @@
 package Services;
 
+import Entities.Discount;
 import Entities.Product;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static Services.DiscountService.allActiveDiscounts;
+
 public class CheckoutService {
     HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
-
+    DiscountService discountService = new DiscountService();
+    private int currentTotal;
 
        public HashMap<String, List<Product>> scanItem(Product scannedProduct) {
 
@@ -40,23 +44,33 @@ public class CheckoutService {
         }
 
         public int calculateTotal() {
+
            int costBeforeApplieDiscounts = 0;
            for (String productId : checkoutCart.keySet()) {
+               int costAfterAppliedDiscounts = 0;
 
-               for (int i = 0; i < checkoutCart.get(productId).size(); i++) {
-                   if (checkoutCart.get(productId).get(i).getProductPricingMethod() == Product.PricingMethod.Unit) {
-                       costBeforeApplieDiscounts += checkoutCart.get(productId).get(i).getProductCostPerPricingMethod();
+               for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
+                   if (checkoutCart.get(productId).get(counter).getProductPricingMethod() == Product.PricingMethod.Unit) {
+                       costBeforeApplieDiscounts += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
                    } else {
                        int costOfWeightedProduct = 0;
-                       costOfWeightedProduct = checkoutCart.get(productId).get(i).getProductCostPerPricingMethod() *
-                               checkoutCart.get(productId).get(i).getProductWeightIfWeighted();
+                       costOfWeightedProduct = checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod() *
+                               checkoutCart.get(productId).get(counter).getProductWeightIfWeighted();
                        costBeforeApplieDiscounts += (costOfWeightedProduct / 100);
                    }
                }
+
+               if (allActiveDiscounts.size() > 0) {
+                   costAfterAppliedDiscounts = discountService.applyDiscountsToCostOfProducts(checkoutCart.get(productId).get(0), checkoutCart.get(productId).size());
+               }
+
+               int costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+                currentTotal = currentTotal + (costPerItem);
            }
 
-           return costBeforeApplieDiscounts;
+           return currentTotal;
         }
+
 
 
         public int deleteItemFromCart(String productId, int quantity) {
@@ -72,7 +86,6 @@ public class CheckoutService {
                    }
                }
            }
-
            return calculateTotal();
         }
 
