@@ -14,6 +14,7 @@ public class DiscountService {
         All types of discounts can be under one umbrella.
         Since there can be multiple types of discounts per one product,
         HashMap will be used to store a list of discounts for each productId
+        This map is static so that this class does not need to be instantiated by the checkout service.
      */
     public static HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
 
@@ -50,6 +51,8 @@ public class DiscountService {
         return response;
     }
 
+    //This is used to add a new discount to the hashmap without having to call the create discount service.
+    //Used for testing currently.
     public void addExistingDiscountToDiscountInventory(Discount discount) {
         if (allActiveDiscounts.containsKey(discount.getProductIdAssociated())) {
             allActiveDiscounts.get(discount.getProductIdAssociated()).add(discount);
@@ -63,19 +66,49 @@ public class DiscountService {
         return allActiveDiscounts;
     }
 
-
-    //This method will account for 3 different types of discounts in requirements.
+    /*
+    This method will account for the 3 different types of discounts in requirements.
+        BXGY, BMForN, Markdown
+     */
     public int applyDiscountsToCostOfProducts(Product product, int quantity) {
 
         List<Discount> discounts = getRelevantDiscountsForProduct(product.getProductId());
         int runningTotalForProduct = 0;
 
-
             for (int counter = 0; counter < quantity; counter++) {
+
+                //Set the cost of the current product
                 int costOfCurrentItem = product.getProductCostPerPricingMethod();
+
                 for (Discount discount : discounts) {
+                    //Check if the limit set in the current discount is greater than the quantity. If it is not, set the quantity to the limit.
+                    int limit = quantity < discount.getLimitForDiscountApplication() ? quantity : discount.getLimitForDiscountApplication();
+                    quantity = limit;
+
+                    //Account for discount of weighted items.
+                    if (product.getProductPricingMethod() == Product.PricingMethod.Weighted) {
+                        int costPerWeight = product.getProductCostPerPricingMethod();
+                        int totalWeight = product.getProductWeightIfWeighted();
+                        int discountApplicationEligibility = (totalWeight / 100) + ((discount.getQuantityRequiredTriggerDiscount() / 100) - (totalWeight / 100));
+                        if (product.getProductWeightIfWeighted() >= discount.getQuantityRequiredTriggerDiscount()) {
+                            //If the value type is currency, then the cost after a discount will be the Weight multiplied by the cost per weight subtracted from the discount value.
+                            //Else, the cost will be weight multiplied by the cost per weight subtracted by the cost per weight times the percent off.
+                            if (discount.getValueType() == Discount.ValueType.Currency) {
+                                product.setProductCostPerPricingMethod(((product.getProductWeightIfWeighted() * costPerWeight) / 100) - (discountApplicationEligibility * discount.getValueBasedOnDiscountType()));
+                            } else {
+                                product.setProductCostPerPricingMethod(((product.getProductWeightIfWeighted() * costPerWeight) / 100) - (discountApplicationEligibility *(costPerWeight * (100 / discount.getValueBasedOnDiscountType()))));
+                            }
+
+                            runningTotalForProduct = product.getProductCostPerPricingMethod();
+                        }
+                    }
+
+                    //If the discount type is Bulk (BMForN), the total price is the cost defined in the discount / the number of products required for the discount.
                     if (discount.getDiscountType() == Discount.DiscountType.BXGY || discount.getDiscountType() == Discount.DiscountType.Markdown) {
+
+                        //This checks to see if the discount is a markdown. The trigger will be zero for markdowns, as no quantities are required.
                         if (discount.getQuantityRequiredTriggerDiscount() == 0) {
+                            //Covers currency based totals and percentage based totals.
                             if (discount.getValueType() == Discount.ValueType.Currency) {
                                 costOfCurrentItem -= discount.getValueBasedOnDiscountType();
                             } else {
@@ -85,6 +118,8 @@ public class DiscountService {
                                 System.out.println(costOfCurrentItem);
                             }
 
+                            //If the trigger is equal to the counter, then the criteria has been met for the BXGY discounts.
+                            //Covers percentage and currency based totals.
                         } else if (discount.getQuantityRequiredTriggerDiscount() == counter) {
                             if (discount.getValueType() == Discount.ValueType.Currency) {
                                 costOfCurrentItem -= discount.getValueBasedOnDiscountType();
@@ -107,31 +142,30 @@ public class DiscountService {
                     }
 
                 }
-
-
+            //If the discount application has reduced the price below zero, then bring the price back to zero.
             if (costOfCurrentItem < 0) {
                 costOfCurrentItem = 0;
             }
 
+            //If discount application has reduced the price below zero, then bring price back to zero.
             if (runningTotalForProduct < 0) {
                 runningTotalForProduct = 0;
             }
+
             runningTotalForProduct += costOfCurrentItem;
 
         }
-
             return runningTotalForProduct;
     }
 
+    //Returns all discounts associated to a specific product.
     public List<Discount> getRelevantDiscountsForProduct(String productId) {
         List<Discount> discounts = new ArrayList<Discount>();
-
         for (String indexProductId : allActiveDiscounts.keySet()) {
             if (indexProductId == productId) {
                 discounts = (allActiveDiscounts.get(indexProductId));
             }
         }
-
         return discounts;
     }
 }

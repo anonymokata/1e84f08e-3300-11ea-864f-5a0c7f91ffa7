@@ -92,15 +92,13 @@ public class CartProductTests {
         Product tomatoSoup = new Product("Tomato Soup", Product.PricingMethod.Unit, 100);
 
         Discount discount = discountService.createDiscount("Tomato Soup", "markdownTomatoSoup", 50, 0, "BXGY", "Currency");
-        Discount discount2 = discountService.createDiscount("Chicken Soup", "markdownChickenSoup", 50, 0, "Markdown", "Percentage");
-
+        Discount discount2 = discountService.createDiscount("Chicken Soup", "markdownChickenSoup", 20, 0, "Markdown", "Percentage");
+        Discount discount3 = discountService.createDiscount("Ground Beef", "MForNGroundBeef", 100, 200, "XForY", "Percentage");
         HashMap<String, List<Discount>> allDiscounts = discountService.returnAllDiscounts();
 
-        checkoutService.scanItem(groundBeef, 1.0);
-        checkoutService.scanItem(chickenSoup);
-        checkoutService.scanItem(potatoSoup);
-        checkoutService.scanItem(tomatoSoup);
+        checkoutService.scanItem(groundBeef, 6.0);
 
-        assertEquals(300, checkoutService.calculateTotal());
+
+        assertEquals(400, checkoutService.calculateTotal());
     }
 }

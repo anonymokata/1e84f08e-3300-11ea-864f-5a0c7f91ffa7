@@ -8,6 +8,7 @@ public class Discount {
     int valueBasedOnDiscountType;
     int quantityRequiredTriggerDiscount;
     int valueOfBulkItems;
+    int limitForDiscountApplication;
     DiscountType discountType;
     ValueType valueType;
 
@@ -18,6 +19,17 @@ public class Discount {
         this.quantityRequiredTriggerDiscount = quantityRequiredTriggerDiscount;
         this.discountType = discountType;
         this.valueType = valueType;
+    }
+
+    //Method overloading to incorporate limits on discounts.
+    public Discount(String productIdAssociated,String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType, int limitForDiscountApplication) {
+        this.productIdAssociated = productIdAssociated;
+        this.uniqueDiscountName = uniqueDiscountName;
+        this.valueBasedOnDiscountType = valueBasedOnDiscountType;
+        this.quantityRequiredTriggerDiscount = quantityRequiredTriggerDiscount;
+        this.discountType = discountType;
+        this.valueType = valueType;
+        this.limitForDiscountApplication = limitForDiscountApplication;
     }
 
     public String getProductIdAssociated() {
@@ -74,6 +86,14 @@ public class Discount {
 
     public void setValueType(ValueType valueType) {
         this.valueType = valueType;
+    }
+
+    public int getLimitForDiscountApplication() {
+        return limitForDiscountApplication;
+    }
+
+    public void setLimitForDiscountApplication(int limitForDiscountApplication) {
+        this.limitForDiscountApplication = limitForDiscountApplication;
     }
 
     public enum DiscountType {Markdown, BXGY, XForY}
