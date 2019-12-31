@@ -24,4 +24,16 @@ public class CheckoutService {
 
             return checkoutCart;
         }
+
+        public int calculateTotal() {
+           int costBeforeApplieDiscounts = 0;
+           for (String productId : checkoutCart.keySet()) {
+
+               for (int i = 0; i < checkoutCart.get(productId).size(); i++) {
+                   costBeforeApplieDiscounts += checkoutCart.get(productId).get(i).getProductCostPerPricingMethod();
+               }
+           }
+
+           return costBeforeApplieDiscounts;
+        }
 }

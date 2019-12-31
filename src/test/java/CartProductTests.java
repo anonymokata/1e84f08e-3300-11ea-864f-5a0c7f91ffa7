@@ -50,6 +50,19 @@ public class CartProductTests {
         checkoutService.scanItem(chickenSoup);
 
         assertEquals(cartAtCheckout, checkoutService.scanItem(chickenSoup));
+    }
+
+    @Test
+    public void validateCorrectTotalProducedFromCartWithoutDiscount() {
+        Product tomatoSoup = new Product("Tomato Soup", Product.PricingMethod.Unit, 100);
+        Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
+        Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
+
+        checkoutService.scanItem(tomatoSoup);
+        checkoutService.scanItem(chickenSoup);
+        checkoutService.scanItem(potatoSoup);
+
+        assertEquals(300, checkoutService.calculateTotal());
 
     }
 }

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="085f3049-3670-4151-b2f7-ec9f8a1af1ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CartProductTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CartProductTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CartProductTests.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -93,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+            <state relative-caret-position="421">
+              <caret line="64" column="57" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#665#688#0" expanded="true" />
@@ -117,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="66" lean-forward="true" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+            <state relative-caret-position="510">
+              <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,14 +157,15 @@
         <option value="$PROJECT_DIR$/src/main/java/Entities/Discount.java" />
         <option value="$PROJECT_DIR$/src/test/java/DiscountTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" />
         <option value="$PROJECT_DIR$/src/main/java/Entities/Product.java" />
         <option value="$PROJECT_DIR$/src/test/java/CartProductTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
+    <option name="x" value="1010" />
+    <option name="y" value="106" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -258,7 +256,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart">
+  <component name="RunManager" selected="JUnit.CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount">
+    <configuration name="CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CartProductTests" />
+      <option name="METHOD_NAME" value="validateCorrectTotalProducedFromCartWithoutDiscount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
@@ -298,23 +306,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductInventoryTests.validateThatAnInventoryProductCanBeRemoved" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ProductInventoryTests" />
-      <option name="METHOD_NAME" value="validateThatAnInventoryProductCanBeRemoved" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CartProductTests.validateCorrectTotalProducedFromCartWithoutDiscount" />
         <item itemvalue="JUnit.CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" />
         <item itemvalue="JUnit.DiscountTests.validateThatADiscountCanBeRemoved" />
         <item itemvalue="JUnit.DiscountTests" />
         <item itemvalue="JUnit.DiscountTests.validateThatADiscountHasBeenCreated" />
-        <item itemvalue="JUnit.ProductInventoryTests.validateThatAnInventoryProductCanBeRemoved" />
       </list>
     </recent_temporary>
   </component>
@@ -329,14 +327,11 @@
       <option name="presentableId" value="Default" />
       <updated>1577658206480</updated>
       <workItem from="1577658210439" duration="6652000" />
-      <workItem from="1577767398704" duration="290000" />
+      <workItem from="1577767398704" duration="621000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="DiscountTests - 2019.12.29 at 18h 28m 54s.xml">
-      <configuration name="DiscountTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="DiscountTests_validateThatADiscountCanBeRemoved - 2019.12.29 at 18h 29m 39s.xml">
       <configuration name="DiscountTests.validateThatADiscountCanBeRemoved" configurationId="JUnit" />
     </history-entry>
@@ -364,15 +359,18 @@
     <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.30 at 23h 46m 59s.xml">
       <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CartProductTests_validateThatProductsBeingScannedAreAddedToCheckoutCart - 2019.12.30 at 23h 48m 10s.xml">
+      <configuration name="CartProductTests.validateThatProductsBeingScannedAreAddedToCheckoutCart" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6942000" />
+    <option name="totallyTimeSpent" value="7273000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="1010" y="106" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.34354487" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18599562" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -381,7 +379,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33150986" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33150986" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -389,7 +387,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3261105" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32603937" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32822758" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -448,10 +446,7 @@
           <caret line="17" selection-start-line="17" selection-end-line="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#64#79#0" />
-            <element signature="e#434#458#0" expanded="true" />
             <element signature="method#createDiscount#0;class#DiscountService#0" />
-            <element signature="e#1025#1035#0" expanded="true" />
             <element signature="method#removeDiscount#0;class#DiscountService#0" />
           </folding>
         </state>
@@ -486,16 +481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="66" lean-forward="true" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -506,10 +491,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CartProductTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+        <state relative-caret-position="421">
+          <caret line="64" column="57" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#665#688#0" expanded="true" />
