@@ -39,4 +39,8 @@ public class InventoryService {
 
         return productId + " removed.";
     }
+
+    public Product getProductFromInventory(String productId) {
+        return productInventory.get(productId);
+    }
 }

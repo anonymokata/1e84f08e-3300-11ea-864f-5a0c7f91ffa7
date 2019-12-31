@@ -10,6 +10,7 @@ import static Services.DiscountService.allActiveDiscounts;
 public class CheckoutService {
     HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
     DiscountService discountService = new DiscountService();
+    InventoryService inventoryService = new InventoryService();
     private int currentTotal;
 
     public HashMap<String, List<Product>> scanItem(Product scannedProduct) {
@@ -25,6 +26,10 @@ public class CheckoutService {
         }
 
         return checkoutCart;
+    }
+
+    public Product setProduct(String productId) {
+        return inventoryService.getProductFromInventory(productId);
     }
 
     //Method overloading to allow a weight parameter to be inputted for weighted items.

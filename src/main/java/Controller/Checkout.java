@@ -1,0 +1,49 @@
+package Controller;
+
+import Services.CheckoutService;
+import Services.DiscountService;
+import Services.InventoryService;
+
+public class Checkout {
+
+        /*
+        Methods for API:
+         - Create an item for the store inventory. Return value should be void or a success response string for item creation.
+         - Remove an item from the store inventory. Return value should be void or a success response string for item removal.
+         - Create Discounts. Return value should be void or a success response string for Discount creation.
+         - Scan Item at Checkout. Return value will be a list of product ids alone with the total for the cart.
+         - Delete Item at Checkout. Return value should be void or a success response string for item in the cart removal.
+     */
+
+    InventoryService inventoryService = new InventoryService();
+    CheckoutService checkoutService = new CheckoutService();
+    DiscountService discountService = new DiscountService();
+
+    public void createInventoryItem(String productId, String pricingMethod, int cost) {
+        inventoryService.createInventoryProduct(productId, pricingMethod, cost);
+    }
+
+    public void createInventoryItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, int productWeightIfWeighted) {
+        inventoryService.createInventoryProduct(productId, productPricingMethod, costOfProductPerPricingMethod, productWeightIfWeighted);
+    }
+
+    public void createDiscount(String productId, String uniqueDiscountId, int discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType) {
+        discountService.createDiscount(productId, uniqueDiscountId, discountValue, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
+    }
+
+    //Used to scan a Per Unit Item
+    public double scanAnItemAtCheckout(String productId) {
+        checkoutService.scanItem(checkoutService.setProduct(productId));
+        return checkoutService.calculateTotal();
+    }
+
+    //Used to scan a Per Weight Item
+    public double scanAnItemAtCheckout(String productId, double itemWeight) {
+        checkoutService.scanItem(checkoutService.setProduct(productId), itemWeight);
+        return checkoutService.calculateTotal();
+    }
+
+    public void deleteAnItemAtCheckout(String productId, int itemQuantityToBeRemoved) {
+        checkoutService.deleteItemFromCart(productId, itemQuantityToBeRemoved);
+    }
+}
