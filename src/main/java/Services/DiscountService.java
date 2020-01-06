@@ -17,7 +17,7 @@ public class DiscountService {
         HashMap will be used to store a list of discounts for each productId
         This map is static so that this class does not need to be instantiated by the checkout service.
      */
-    static InventoryService inventoryService = InventoryService.getInstance();
+    InventoryService inventoryService = InventoryService.getInstance();
     public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
 
     public Discount createDiscount(String productIdAssociatedToDiscount, String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, String discountType, String valueType) {
@@ -238,11 +238,11 @@ public class DiscountService {
 
         //To avoid setting existent instance objects to new values in the inventory, object is cloned instead of using getters and setters.
         for (int counter = 0; counter < products.size(); counter++) {
-            List<String> discountsApplied = products.get(counter).getDiscountsApplied();
-            Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getDiscountsApplied());
-
+            Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod());
+            List<String> discountsApplied = new ArrayList<>();
+            discountsApplied.addAll(cloneProduct.getDiscountsApplied());
             if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
-                if (!discountsApplied.contains(discount.getUniqueDiscountName())) {
+                if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
                     if (discount.getLimitForDiscountApplication() == 0) {
                         cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
@@ -255,13 +255,17 @@ public class DiscountService {
                 }
             } else {
 
-                if (!discountsApplied.contains(discount.getUniqueDiscountName())) {
-                    cloneProduct.setProductWeightIfWeighted(products.get(counter).getProductWeightIfWeighted());
-                    int eligibilityForDiscount = (cloneProduct.getProductWeightIfWeighted() / 100);
-                    int deductionFromTotalWeightCost = eligibilityForDiscount * discount.getValueBasedOnDiscountType();
-                    cloneProduct.setProductCostPerPricingMethod((((products.get(counter).getProductCostPerPricingMethod() * products.get(counter).getProductWeightIfWeighted())/ 100) - deductionFromTotalWeightCost));
-                    cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
-                    products.set(counter, cloneProduct);
+                if (!products.get(counter).getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
+                    if (discount.getLimitForDiscountApplication() == 0 || (counter < discount.getLimitForDiscountApplication())) {
+                        cloneProduct.setProductWeightIfWeighted(products.get(counter).getProductWeightIfWeighted());
+                        int eligibilityForDiscount = (cloneProduct.getProductWeightIfWeighted() / 100);
+                        int deductionFromTotalWeightCost = eligibilityForDiscount * discount.getValueBasedOnDiscountType();
+                        cloneProduct.setProductCostPerPricingMethod((((products.get(counter).getProductCostPerPricingMethod() * products.get(counter).getProductWeightIfWeighted()) / 100) - deductionFromTotalWeightCost));
+                        cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                        products.set(counter, cloneProduct);
+                    } else {
+                        products.get(counter).setProductCostPerPricingMethod((products.get(counter).getProductCostPerPricingMethod()) * (products.get(counter).getProductWeightIfWeighted()) / 100);
+                    }
                 }
 
             }
@@ -276,16 +280,26 @@ public class DiscountService {
 
 
             for (int counter = 0; counter < products.size(); counter++) {
-                List<String> discountsApplied = products.get(counter).getDiscountsApplied();
-                Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getDiscountsApplied());
+                Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod());
+                List<String> discountsApplied = new ArrayList<>();
+                discountsApplied.addAll(cloneProduct.getDiscountsApplied());
 
-                if (counter == discount.getQuantityRequiredTriggerDiscount() && limiter <= discount.getLimitForDiscountApplication() && !cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
-                    cloneProduct.setProductCostPerPricingMethod(discount.getValueBasedOnDiscountType());
+                if (discountApplicationCounter == discount.getQuantityRequiredTriggerDiscount() && discount.getLimitForDiscountApplication() == 0
+                        && !cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
+                    cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                    cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                    products.set(counter, cloneProduct);
+                    discountApplicationCounter = 0;
+
+                } else if (discount.getLimitForDiscountApplication() > 0 && limiter != discount.getLimitForDiscountApplication() && !cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
+                    cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
                     cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                     products.set(counter, cloneProduct);
                     discountApplicationCounter = 0;
                     limiter++;
-                } else {
+                }
+
+                else  {
                     discountApplicationCounter++;
                 }
             }

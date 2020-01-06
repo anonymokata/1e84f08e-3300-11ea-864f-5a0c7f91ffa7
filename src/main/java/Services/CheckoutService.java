@@ -38,19 +38,31 @@ public class CheckoutService {
        return scanItem(product);
     }
 
-    public int calculateCurrentTotal() {
+    public int calculateCurrentTotalWithDiscounts() {
         int currentTotal = 0;
 
         for (String productId : checkoutCart.keySet()) {
+            if (discountService.getRelevantDiscountsForProduct(productId).size() > 0) {
+                checkoutCart.replace(productId, checkoutCart.get(productId), discountService.checkDiscounts(checkoutCart.get(productId)));
+            }
             for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
-                if (discountService.getRelevantDiscountsForProduct(productId).size() > 0) {
-                    checkoutCart.replace(productId, checkoutCart.get(productId), discountService.checkDiscounts(checkoutCart.get(productId)));
-                }
                 currentTotal += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
             }
 
         }
         return currentTotal;
+    }
+
+    public int calculateCurrentTotal() {
+        int currentTotal = 0;
+        for (String productId : checkoutCart.keySet()) {
+            for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
+                currentTotal += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
+            }
+        }
+
+        return currentTotal;
+
     }
 
 

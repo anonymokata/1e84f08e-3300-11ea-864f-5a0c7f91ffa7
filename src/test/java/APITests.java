@@ -1,4 +1,5 @@
 import Controller.Checkout;
+import Services.InventoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +14,11 @@ public class APITests  {
 
 
     Checkout checkout = Checkout.getInstance();
+
     @Before
     public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
         Field checkoutInstance = Checkout.class.getDeclaredField("obj");
+        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
         checkoutInstance.setAccessible(true);
         checkoutInstance.set(null, null);
     }
@@ -75,7 +78,20 @@ public class APITests  {
         checkout.createDiscount("Ground Beef", "Ground Beef Markdown", .50, 0, "Markdown", "Currency", 1);
 
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
-        assertEquals(1.50, checkout.getTotal());
+        assertEquals(7.00, checkout.getTotal());
+    }
+
+    @Test
+    public void validateUnitTotalsWithBxgyDiscount() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup Bxgy", 1.50, 1, "BXGY", "Currency");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+
+        assertEquals(3.00, checkout.getTotal());
     }
 }

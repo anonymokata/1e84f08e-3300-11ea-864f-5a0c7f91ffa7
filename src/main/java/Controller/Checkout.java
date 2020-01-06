@@ -60,7 +60,7 @@ public class Checkout {
     }
 
     public double getTotal() {
-       return ((double) checkoutService.calculateCurrentTotal() / 100);
+       return ((double) checkoutService.calculateCurrentTotalWithDiscounts() / 100);
     }
 
     //Singleton implementation
