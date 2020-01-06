@@ -64,6 +64,17 @@ public class APITests  {
     }
 
     @Test
+    public void validateUnitTotalsWithMarkdownDiscountPercentageWithLimit() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", 50, 0, "Markdown", "Percentage", 1);
+
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+
+        assertEquals(2.25, checkout.getTotal());
+    }
+
+    @Test
     public void validateUnitTotalsWithMarkdownDiscountIncludeLimitCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", .50, 0, "Markdown", "Currency", 1);

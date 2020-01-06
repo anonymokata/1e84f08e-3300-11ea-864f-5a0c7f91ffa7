@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="085f3049-3670-4151-b2f7-ec9f8a1af1ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/APITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/APITests.java" afterDir="false" />
     </list>
@@ -37,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="130" column="86" selection-start-line="130" selection-start-column="86" selection-end-line="130" selection-end-column="86" />
+            <state relative-caret-position="384">
+              <caret line="129" column="168" selection-start-line="129" selection-start-column="168" selection-end-line="129" selection-end-column="168" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#583#607#0" expanded="true" />
@@ -96,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/APITests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="59" column="53" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
+            <state relative-caret-position="436">
+              <caret line="68" column="105" selection-start-line="68" selection-start-column="105" selection-end-line="68" selection-end-column="105" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -313,22 +312,22 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentage">
-    <configuration name="APITests.validateUnitTotalWithXforYDiscountAndLimitCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="APITests" />
-      <option name="METHOD_NAME" value="validateUnitTotalWithXforYDiscountAndLimitCurrency" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentageWithLimit">
     <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="APITests" />
       <option name="METHOD_NAME" value="validateUnitTotalsWithMarkdownDiscountPercentage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentageWithLimit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="APITests" />
+      <option name="METHOD_NAME" value="validateUnitTotalsWithMarkdownDiscountPercentageWithLimit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -366,11 +365,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentageWithLimit" />
         <item itemvalue="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentage" />
         <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency" />
         <item itemvalue="JUnit.APITests.validateWeightTotalWithXforYDiscountAndLimitCurrency" />
         <item itemvalue="JUnit.APITests.validateWeightTotalWithXforYDiscountCurrency" />
-        <item itemvalue="JUnit.APITests.validateUnitTotalWithXforYDiscountAndLimitCurrency" />
       </list>
     </recent_temporary>
   </component>
@@ -389,29 +388,11 @@
       <workItem from="1577827818202" duration="4236000" />
       <workItem from="1577910039550" duration="599000" />
       <workItem from="1577927725323" duration="11760000" />
-      <workItem from="1578278277596" duration="39735000" />
+      <workItem from="1578278277596" duration="40013000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 20m 16s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 20m 32s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 21m 09s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 21m 11s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 21m 27s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 21m 47s.xml">
-      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 21m 55s.xml">
       <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
     </history-entry>
@@ -424,9 +405,27 @@
     <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 24m 08s.xml">
       <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 24m 42s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 24m 56s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 26m 40s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 27m 03s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 27m 05s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="APITests_validateUnitTotalsWithMarkdownDiscountPercentage - 2020.01.06 at 17h 27m 22s.xml">
+      <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75802000" />
+    <option name="totallyTimeSpent" value="76080000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,7 +440,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49838188" visible="true" weight="0.23027718" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49838188" visible="true" weight="0.23027718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -451,14 +450,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33044422" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.1928494" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.1928494" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32502708" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32502708" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32394367" />
       <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
@@ -534,43 +533,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>158</line>
+          <line>159</line>
           <properties />
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>143</line>
+          <line>144</line>
           <properties />
           <option name="timeStamp" value="162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>151</line>
+          <line>152</line>
           <properties />
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>219</line>
+          <line>220</line>
           <properties />
           <option name="timeStamp" value="193" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>234</line>
+          <line>235</line>
           <properties />
           <option name="timeStamp" value="194" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>231</line>
+          <line>232</line>
           <properties />
           <option name="timeStamp" value="198" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>228</line>
+          <line>229</line>
           <properties />
           <option name="timeStamp" value="201" />
         </line-breakpoint>
@@ -582,13 +581,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>102</line>
-          <properties />
-          <option name="timeStamp" value="212" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>130</line>
+          <line>131</line>
           <properties />
           <option name="timeStamp" value="213" />
         </line-breakpoint>
@@ -740,20 +733,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/APITests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="59" column="53" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="130" column="86" selection-start-line="130" selection-start-column="86" selection-end-line="130" selection-end-column="86" />
+        <state relative-caret-position="384">
+          <caret line="129" column="168" selection-start-line="129" selection-start-column="168" selection-end-line="129" selection-end-column="168" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#583#607#0" expanded="true" />
@@ -764,6 +747,16 @@
             <element signature="e#6197#6207#0" expanded="true" />
             <element signature="e#10757#10766#0" expanded="true" />
             <element signature="method#getInstance#0;class#DiscountService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/APITests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="68" column="105" selection-start-line="68" selection-start-column="105" selection-end-line="68" selection-end-column="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

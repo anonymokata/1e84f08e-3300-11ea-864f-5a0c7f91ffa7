@@ -134,7 +134,13 @@ public class DiscountService {
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
                     } else if (counter != discount.getLimitForDiscountApplication()) {
-                        cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                        if (discount.getValueType() == Discount.ValueType.Currency) {
+                            cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                        } else {
+                            double valueOff = ((((double) discount.getValueBasedOnDiscountType() / 1000) * (double) cloneProduct.getProductCostPerPricingMethod()) / 10);
+                            double totalCost = cloneProduct.getProductCostPerPricingMethod() - valueOff;
+                            cloneProduct.setProductCostPerPricingMethod((int)totalCost);
+                        }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
                     }
