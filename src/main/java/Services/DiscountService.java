@@ -200,6 +200,61 @@ public class DiscountService {
         return discount.getValueBasedOnDiscountType() / discount.getQuantityRequiredTriggerDiscount();
     }
 
+    public List<Product> checkDiscounts(List<Product> products) {
+        List<Discount> discounts = getRelevantDiscountsForProduct(products.get(0).getProductId());
+        List<Product> productsAppended = new ArrayList<Product>();
+        for (Discount discount : discounts) {
+            if (discount.getDiscountType() == Discount.DiscountType.Markdown) {
+                productsAppended = applyMarkdown(products, discount);
+            } else if(discount.getDiscountType() == Discount.DiscountType.BXGY) {
+                productsAppended = applyBxgy(products, discount);
+            } else if (discount.getDiscountType() == Discount.DiscountType.XForY) {
+                productsAppended = applyXfory(products, discount);
+            }
+        }
+        return productsAppended;
+    }
+
+    public List<Product> applyMarkdown(List<Product> products, Discount discount) {
+
+        if (discount.getLimitForDiscountApplication() == 0) {
+            for (Product product : products) {
+                if (product.getDiscountsApplied() == null || !product.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
+                    if (product.getProductPricingMethod() == Product.PricingMethod.Unit) {
+                        product.setProductCostPerPricingMethod(product.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                        product.setDiscountsApplied(discount.getUniqueDiscountName());
+                    }
+                }
+            }
+        } else {
+            for (int counter = 0; counter < products.size(); counter++) {
+                if (counter != discount.getLimitForDiscountApplication() && !products.get(counter).getDiscountsApplied().contains(discount)) {
+                    products.get(counter).setProductCostPerPricingMethod(products.get(counter).getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                }
+            }
+        }
+
+        return products;
+    }
+
+    public List<Product> applyBxgy(List<Product> products, Discount discount) {
+        int discountApplicationCounter = 0;
+        int limiter = 0;
+            for (int counter = 0; counter < products.size(); counter++) {
+                if (counter == discount.getQuantityRequiredTriggerDiscount() && limiter <= discount.getLimitForDiscountApplication()) {
+                    products.get(counter).setProductCostPerPricingMethod(discount.getValueBasedOnDiscountType());
+                    discountApplicationCounter = 0;
+                    limiter++;
+                } else {
+                    discountApplicationCounter++;
+                }
+            }
+        return products;
+    }
+
+    public List<Product> applyXfory(List<Product> products, Discount discount) {
+        return products;
+    }
 
 
 

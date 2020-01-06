@@ -33,4 +33,17 @@ public class APITests  {
 
         assertEquals(3.50, checkout.getTotal());
     }
+
+    @Test
+    public void validateUnitTotalsWithMarkdownDiscount() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createInventoryItem("Chicken Soup", "Unit", 1.00);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", .50, 0, "Markdown", "Currency");
+        checkout.createDiscount("Chicken Soup", "Chicken Soup Markdown", .50, 0, "Markdown", "Currency");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Chicken Soup");
+        checkout.scanAnItemAtCheckout("Chicken Soup");
+
+        assertEquals(2.00, checkout.getTotal());
+    }
 }

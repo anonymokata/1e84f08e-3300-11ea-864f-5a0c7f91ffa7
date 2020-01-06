@@ -39,14 +39,14 @@ public class Checkout {
     //Used to scan a Per Unit Item
     public double scanAnItemAtCheckout(String productId) {
         checkoutService.scanItem( checkoutService.setProduct(productId));
-        double total =  checkoutService.calculateTotal();
+        double total =  checkoutService.calculateCurrentTotal();
         return (total / 100);
     }
 
     //Used to scan a Per Weight Item
     public double scanAnItemAtCheckout(String productId, double itemWeight) {
         checkoutService.scanItem(checkoutService.setProduct(productId), itemWeight);
-        double total = checkoutService.calculateTotal();
+        double total = checkoutService.calculateCurrentTotal();
         return (total / 100);
     }
 
@@ -55,7 +55,7 @@ public class Checkout {
     }
 
     public double getTotal() {
-       return ((double) checkoutService.calculateTotal() / 100);
+       return ((double) checkoutService.calculateCurrentTotal() / 100);
     }
 
     //Singleton implementation

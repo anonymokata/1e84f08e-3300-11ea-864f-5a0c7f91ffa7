@@ -3,18 +3,23 @@ package Entities;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Product {
     private String productId;
     private PricingMethod productPricingMethod;
     private int productCostPerPricingMethod;
     private int productWeightIfWeighted;
+    private List<String> discountsApplied = new ArrayList<>();
+
 
 
     /*
-        There will be two constructors.
-        First Constructor will be used to assign properties of a product that
-        is not priced based on weight.
-     */
+                    There will be two constructors.
+                    First Constructor will be used to assign properties of a product that
+                    is not priced based on weight.
+                 */
     public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod) {
         this.productId = productId;
         this.productPricingMethod = productPricingMethod;
@@ -58,6 +63,14 @@ public class Product {
 
     public void setProductWeightIfWeighted(int productWeightIfWeighted) {
         this.productWeightIfWeighted = productWeightIfWeighted;
+    }
+
+    public void setDiscountsApplied(String discountsApplied) {
+        this.discountsApplied.add(discountsApplied);
+    }
+
+    public List<String> getDiscountsApplied() {
+        return discountsApplied;
     }
 
     public enum PricingMethod{Unit, Weighted}
