@@ -11,8 +11,17 @@ public class Discount {
     int limitForDiscountApplication;
     DiscountType discountType;
     ValueType valueType;
+    int amountOffOfBxgy;
 
-    public Discount(String productIdAssociated,String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType) {
+    public int getAmountOffOfBxgy() {
+        return amountOffOfBxgy;
+    }
+
+    public void setAmountOffOfBxgy(int amountOffOfBxgy) {
+        this.amountOffOfBxgy = amountOffOfBxgy;
+    }
+
+    public Discount(String productIdAssociated, String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType) {
         this.productIdAssociated = productIdAssociated;
         this.uniqueDiscountName = uniqueDiscountName;
         this.valueBasedOnDiscountType = valueBasedOnDiscountType;

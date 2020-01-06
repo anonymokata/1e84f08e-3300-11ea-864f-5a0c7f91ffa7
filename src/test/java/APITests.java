@@ -38,7 +38,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateUnitTotalsWithMarkdownDiscount() {
+    public void validateUnitTotalsWithMarkdownDiscountCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createInventoryItem("Chicken Soup", "Unit", 1.00);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", 1.00, 0, "Markdown", "Currency");
@@ -53,7 +53,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateUnitTotalsWithMarkdownDiscountIncludeLimit() {
+    public void validateUnitTotalsWithMarkdownDiscountIncludeLimitCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", .50, 0, "Markdown", "Currency", 1);
         checkout.scanAnItemAtCheckout("Tomato Soup");
@@ -63,7 +63,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateWeightTotalsWithMarkdownDiscount() {
+    public void validateWeightTotalsWithMarkdownDiscountCurrency() {
         checkout.createInventoryItem("Ground Beef", "Weighted", 2);
         checkout.createDiscount("Ground Beef", "Ground Beef Markdown", .50, 0, "Markdown", "Currency");
 
@@ -73,7 +73,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateWeightTotalsWithMarkdownDiscountIncludeLimit() {
+    public void validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency() {
         checkout.createInventoryItem("Ground Beef", "Weighted", 2);
         checkout.createDiscount("Ground Beef", "Ground Beef Markdown", .50, 0, "Markdown", "Currency", 1);
 
@@ -84,7 +84,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateUnitTotalsWithBxgyDiscount() {
+    public void validateUnitTotalsWithBxgyDiscountCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Bxgy", 1.50, 1, "BXGY", "Currency");
         checkout.scanAnItemAtCheckout("Tomato Soup");
@@ -96,7 +96,7 @@ public class APITests  {
     }
 
     @Test
-    public void validateUnitTotalsWithBxgyDiscountAndLimit() {
+    public void validateUnitTotalsWithBxgyDiscountAndLimitCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Bxgy", 1.50, 1, "BXGY", "Currency", 1);
         checkout.scanAnItemAtCheckout("Tomato Soup");
@@ -105,5 +105,14 @@ public class APITests  {
         checkout.scanAnItemAtCheckout("Tomato Soup");
 
         assertEquals(4.50, checkout.getTotal());
+    }
+
+    @Test
+    public void validateWeightTotalWithBxgyDiscountCurrency() {
+        checkout.createInventoryItem("Ground Beef", "Weighted", 2);
+        checkout.createDiscount("Ground Beef", "Ground Beef Markdown", 2, 1, "BXGY", "Currency", 1);
+
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+        assertEquals(2.00, checkout.getTotal());
     }
 }
