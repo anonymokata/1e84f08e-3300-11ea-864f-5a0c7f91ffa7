@@ -118,6 +118,17 @@ public class APITests  {
     }
 
     @Test
+    public void validateWeightTotalsWithMarkdownDiscountIncludeLimitPercentage() {
+        checkout.createInventoryItem("Ground Beef", "Weighted", 2.00);
+        checkout.createDiscount("Ground Beef", "Ground Beef Markdown", 25, 0, "Markdown", "Percentage", 1);
+
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+
+        assertEquals(7.00, checkout.getTotal());
+    }
+
+    @Test
     public void validateUnitTotalsWithBxgyDiscountCurrency() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
         checkout.createDiscount("Tomato Soup", "Tomato Soup Bxgy", 1.50, 1, "BXGY", "Currency");

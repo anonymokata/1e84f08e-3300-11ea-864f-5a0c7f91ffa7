@@ -314,7 +314,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountPercentage">
+  <component name="RunManager" selected="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitPercentage">
     <configuration name="APITests.validateUnitTotalsWithMarkdownDiscountPercentage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
@@ -335,21 +335,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="APITests.validateWeightTotalWithXforYDiscountAndLimitCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="APITests" />
-      <option name="METHOD_NAME" value="validateWeightTotalWithXforYDiscountAndLimitCurrency" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="APITests" />
       <option name="METHOD_NAME" value="validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitPercentage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="APITests" />
+      <option name="METHOD_NAME" value="validateWeightTotalsWithMarkdownDiscountIncludeLimitPercentage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -367,11 +367,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitPercentage" />
+        <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency" />
         <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountPercentage" />
         <item itemvalue="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentageWithLimit" />
         <item itemvalue="JUnit.APITests.validateUnitTotalsWithMarkdownDiscountPercentage" />
-        <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimitCurrency" />
-        <item itemvalue="JUnit.APITests.validateWeightTotalWithXforYDiscountAndLimitCurrency" />
       </list>
     </recent_temporary>
   </component>

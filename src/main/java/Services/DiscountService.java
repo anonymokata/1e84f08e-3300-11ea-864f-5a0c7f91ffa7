@@ -150,6 +150,7 @@ public class DiscountService {
                         }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
+                        discountApplicationCounter++;
                     }
 
                 }
