@@ -114,7 +114,7 @@ public class DiscountService {
     }
 
     public List<Product> applyMarkdownCurrencyBased(List<Product> products, Discount discount) {
-
+        int discountApplicationCounter = 0;
         //To avoid setting existent instance objects to new values in the inventory, object is cloned instead of using getters and setters.
         for (int counter = 0; counter < products.size(); counter++) {
             Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod());
@@ -123,41 +123,35 @@ public class DiscountService {
 
             if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
                 if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
-                    if (discount.getLimitForDiscountApplication() == 0) {
+                    if (discount.getLimitForDiscountApplication() == 0 || (discount.getLimitForDiscountApplication() != 0 &&  discountApplicationCounter < discount.getLimitForDiscountApplication())) {
                         if (discount.getValueType() == Discount.ValueType.Currency) {
                             cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
                         } else {
-                            double valueOff = ((((double) discount.getValueBasedOnDiscountType() / 1000) * (double) cloneProduct.getProductCostPerPricingMethod()) / 10);
-                            double totalCost = cloneProduct.getProductCostPerPricingMethod() - valueOff;
-                            cloneProduct.setProductCostPerPricingMethod((int)totalCost);
+                            cloneProduct.setProductCostPerPricingMethod((int) getPercentageOffValue(cloneProduct.getProductCostPerPricingMethod(), discount.getValueBasedOnDiscountType()));
                         }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
-                    } else if (counter != discount.getLimitForDiscountApplication()) {
-                        if (discount.getValueType() == Discount.ValueType.Currency) {
-                            cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
-                        } else {
-                            double valueOff = ((((double) discount.getValueBasedOnDiscountType() / 1000) * (double) cloneProduct.getProductCostPerPricingMethod()) / 10);
-                            double totalCost = cloneProduct.getProductCostPerPricingMethod() - valueOff;
-                            cloneProduct.setProductCostPerPricingMethod((int)totalCost);
-                        }
-                        cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
-                        products.set(counter, cloneProduct);
+                        discountApplicationCounter++;
                     }
                 }
             } else {
 
                 if (!products.get(counter).getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
-                    if (discount.getLimitForDiscountApplication() == 0 || (counter < discount.getLimitForDiscountApplication())) {
+                    if (discount.getLimitForDiscountApplication() == 0 || (discount.getLimitForDiscountApplication() != 0 &&  discountApplicationCounter < discount.getLimitForDiscountApplication())) {
                         cloneProduct.setProductWeightIfWeighted(products.get(counter).getProductWeightIfWeighted());
                         int eligibilityForDiscount = (cloneProduct.getProductWeightIfWeighted() / 100);
                         int deductionFromTotalWeightCost = eligibilityForDiscount * discount.getValueBasedOnDiscountType();
-                        cloneProduct.setProductCostPerPricingMethod((((products.get(counter).getProductCostPerPricingMethod() * products.get(counter).getProductWeightIfWeighted()) / 100) - deductionFromTotalWeightCost));
+
+                        if (discount.getValueType() == Discount.ValueType.Currency) {
+                            cloneProduct.setProductCostPerPricingMethod((((products.get(counter).getProductCostPerPricingMethod() * products.get(counter).getProductWeightIfWeighted()) / 100) - deductionFromTotalWeightCost));
+                        } else {
+                            cloneProduct.setProductCostPerPricingMethod((((int) getPercentageOffValue(cloneProduct.getProductCostPerPricingMethod(),
+                                    cloneProduct.getProductWeightIfWeighted(), deductionFromTotalWeightCost) / eligibilityForDiscount) * cloneProduct.getProductWeightIfWeighted()) / 100);
+                        }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
-                    } else {
-                        products.get(counter).setProductCostPerPricingMethod((products.get(counter).getProductCostPerPricingMethod()) * (products.get(counter).getProductWeightIfWeighted()) / 100);
                     }
+
                 }
 
             }
@@ -251,6 +245,17 @@ public class DiscountService {
         }
 
         return products;
+    }
+
+    public double getPercentageOffValue(int totalCost, int percentOff) {
+        percentOff = percentOff / 100;
+        return totalCost - ((totalCost * percentOff) / 100);
+    }
+
+    public double getPercentageOffValue(int pricePerMethod, int productWeight, int percentOff) {
+        int totalCost = (pricePerMethod * productWeight) / 100;
+        percentOff = percentOff / 100;
+        return totalCost - ((productWeight * percentOff) / 100);
     }
 
 

@@ -52,6 +52,17 @@ public class APITests  {
         assertEquals(2.5, checkout.getTotal());
     }
 
+
+    @Test
+    public void validateUnitTotalsWithMarkdownDiscountIncludeLimitCurrency() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", .50, 0, "Markdown", "Currency", 1);
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+
+        assertEquals(2.5, checkout.getTotal());
+    }
+
     @Test
     public void validateUnitTotalsWithMarkdownDiscountPercentage() {
         checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
@@ -74,15 +85,6 @@ public class APITests  {
         assertEquals(2.25, checkout.getTotal());
     }
 
-    @Test
-    public void validateUnitTotalsWithMarkdownDiscountIncludeLimitCurrency() {
-        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
-        checkout.createDiscount("Tomato Soup", "Tomato Soup Markdown", .50, 0, "Markdown", "Currency", 1);
-        checkout.scanAnItemAtCheckout("Tomato Soup");
-        checkout.scanAnItemAtCheckout("Tomato Soup");
-
-        assertEquals(2.5, checkout.getTotal());
-    }
 
     @Test
     public void validateWeightTotalsWithMarkdownDiscountCurrency() {
@@ -103,6 +105,16 @@ public class APITests  {
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
         assertEquals(7.50, checkout.getTotal());
+    }
+
+    @Test
+    public void validateWeightTotalsWithMarkdownDiscountPercentage() {
+        checkout.createInventoryItem("Ground Beef", "Weighted", 2.00);
+        checkout.createDiscount("Ground Beef", "Ground Beef Markdown", 25, 0, "Markdown", "Percentage");
+
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+
+        assertEquals(3.00, checkout.getTotal());
     }
 
     @Test
