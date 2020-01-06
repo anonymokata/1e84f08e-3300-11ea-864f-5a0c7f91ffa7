@@ -137,4 +137,21 @@ public class APITests  {
 
         assertEquals(5.00, checkout.getTotal());
     }
+
+    @Test
+    public void validateUnitTotalWithXforYDiscountAndLimitCurrency() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup BXFY", 5, 4, "XForY", "Currency", 1);
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+
+
+        assertEquals(11.00, checkout.getTotal());
+    }
 }
