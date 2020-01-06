@@ -15,11 +15,12 @@ public class CheckoutService {
 
         //When an item is scanned, the new item is then added to the cart at
         // the key corresponding to the product id.
+        Product product = new Product(scannedProduct.getProductId(), scannedProduct.getProductPricingMethod(), scannedProduct.getProductCostPerPricingMethod(), scannedProduct.getProductWeightIfWeighted());
         if (checkoutCart.containsKey(scannedProduct.getProductId())) {
-            checkoutCart.get(scannedProduct.getProductId()).add(scannedProduct);
+            checkoutCart.get(scannedProduct.getProductId()).add(product);
         } else {
             List<Product> tempList = new ArrayList<Product>();
-            tempList.add(scannedProduct);
+            tempList.add(product);
             checkoutCart.put(scannedProduct.getProductId(), tempList);
         }
 

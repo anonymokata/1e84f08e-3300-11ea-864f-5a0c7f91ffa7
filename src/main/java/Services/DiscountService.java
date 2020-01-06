@@ -319,23 +319,40 @@ public class DiscountService {
         for (int counter = 0; counter < products.size(); counter++) {
             Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getProductWeightIfWeighted());
             List<String> discountsApplied = new ArrayList<>();
+            discountsApplied.addAll(cloneProduct.getDiscountsApplied());
             double adjustedCostPerItem = 0;
             discountsApplied.addAll(cloneProduct.getDiscountsApplied());
 
-            if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
-                if(discount.getLimitForDiscountApplication() == 0) {
-                    adjustedCostPerItem = (double) discount.getValueBasedOnDiscountType() / ((double) products.size() * 100);
-                    adjustedCostPerItem *= 100;
-                    cloneProduct.setProductCostPerPricingMethod((int) adjustedCostPerItem);
-                    cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
-                    products.set(counter, cloneProduct);
-                } else if(discountApplicationCounter < (discount.getLimitForDiscountApplication() * discount.getQuantityRequiredTriggerDiscount())) {
-                    adjustedCostPerItem = (double) discount.getValueBasedOnDiscountType() / ((double) discount.getQuantityRequiredTriggerDiscount() * 100);
-                    adjustedCostPerItem *= 100;
-                    cloneProduct.setProductCostPerPricingMethod((int) adjustedCostPerItem);
-                    cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
-                    products.set(counter, cloneProduct);
-                    discountApplicationCounter++;
+            if (!cloneProduct.getDiscountsApplied().contains(discount)) {
+                if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
+                    if (discount.getLimitForDiscountApplication() == 0) {
+                        adjustedCostPerItem = (double) discount.getValueBasedOnDiscountType() / ((double) products.size() * 100);
+                        adjustedCostPerItem *= 100;
+                        cloneProduct.setProductCostPerPricingMethod((int) adjustedCostPerItem);
+                        cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                        products.set(counter, cloneProduct);
+                    } else if (discountApplicationCounter < (discount.getLimitForDiscountApplication() * discount.getQuantityRequiredTriggerDiscount())) {
+                        adjustedCostPerItem = (double) discount.getValueBasedOnDiscountType() / ((double) discount.getQuantityRequiredTriggerDiscount() * 100);
+                        adjustedCostPerItem *= 100;
+                        cloneProduct.setProductCostPerPricingMethod((int) adjustedCostPerItem);
+                        cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                        products.set(counter, cloneProduct);
+                        discountApplicationCounter++;
+                    }
+                } else {
+                    if (discount.getLimitForDiscountApplication() == 0) {
+                        int eligibleDiscountApplication = (cloneProduct.getProductWeightIfWeighted() / discount.getQuantityRequiredTriggerDiscount() / 100);
+                        if (eligibleDiscountApplication > 0) {
+                            int weightRequiredForDiscount = discount.getQuantityRequiredTriggerDiscount() * 100;
+                            adjustedCostPerItem = (int) ((double) discount.getValueBasedOnDiscountType() / ((double) eligibleDiscountApplication * (double) weightRequiredForDiscount) * 100);
+                            int costOfNonDiscountProduct = ((products.get(counter).getProductWeightIfWeighted() - weightRequiredForDiscount) * (products.get(counter).getProductCostPerPricingMethod() / 100));
+                            double totalCost = ((adjustedCostPerItem * weightRequiredForDiscount) / 100) + costOfNonDiscountProduct;
+                            cloneProduct.setProductCostPerPricingMethod((int) totalCost);
+                            cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                            products.set(counter, cloneProduct);
+                        }
+
+                    }
                 }
             }
         }
