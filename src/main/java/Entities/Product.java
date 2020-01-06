@@ -33,6 +33,13 @@ public class Product {
         this.productWeightIfWeighted = productWeightIfWeighted;
     }
 
+    public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod, List<String> discountsApplied) {
+        this.productId = productId;
+        this.productPricingMethod = productPricingMethod;
+        this.productCostPerPricingMethod = productCostPerPricingMethod;
+        this.discountsApplied = discountsApplied;
+    }
+
     public String getProductId() {
         return productId;
     }

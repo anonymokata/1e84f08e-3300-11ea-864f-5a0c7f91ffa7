@@ -27,7 +27,8 @@ public class CheckoutService {
     }
 
     public Product setProduct(String productId) {
-        return inventoryService.getProductFromInventory(productId);
+        Product product = inventoryService.getProductFromInventory(productId);
+        return product;
     }
 
     //Method overloading to allow a weight parameter to be inputted for weighted items.

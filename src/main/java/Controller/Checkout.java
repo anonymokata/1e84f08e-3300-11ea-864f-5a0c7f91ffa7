@@ -36,6 +36,11 @@ public class Checkout {
         discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
     }
 
+    public void createDiscount(String productId, String uniqueDiscountId, double discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType, int limitForDiscount) {
+        int valueTranslated = (int) (discountValue * 100);
+        discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType, limitForDiscount);
+    }
+
     //Used to scan a Per Unit Item
     public double scanAnItemAtCheckout(String productId) {
         checkoutService.scanItem( checkoutService.setProduct(productId));
