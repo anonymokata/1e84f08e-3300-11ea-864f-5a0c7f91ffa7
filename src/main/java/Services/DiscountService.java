@@ -315,6 +315,23 @@ public class DiscountService {
     }
 
     public List<Product> applyXfory(List<Product> products, Discount discount) {
+
+        for (int counter = 0; counter < products.size(); counter++) {
+            Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getProductWeightIfWeighted());
+            List<String> discountsApplied = new ArrayList<>();
+            double adjustedCostPerItem = 0;
+            discountsApplied.addAll(cloneProduct.getDiscountsApplied());
+
+            if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
+                adjustedCostPerItem = (double) discount.getValueBasedOnDiscountType() / ((double) products.size() * 100);
+                adjustedCostPerItem *= 100;
+                cloneProduct.setProductCostPerPricingMethod((int) adjustedCostPerItem);
+                cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                products.set(counter, cloneProduct);
+            }
+        }
+
+
         return products;
     }
 
