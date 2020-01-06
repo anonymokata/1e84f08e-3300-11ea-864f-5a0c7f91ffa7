@@ -22,34 +22,40 @@ public class Checkout {
     //Make this class a singleton so that the services aren't instantied at every call.
 
     public void createInventoryItem(String productId, String pricingMethod, double costOfProductPerPricingMethod) {
-        int costTranslated = (int) costOfProductPerPricingMethod;
+        int costTranslated = (int) (costOfProductPerPricingMethod * 100);
         inventoryService.createInventoryProduct(productId, pricingMethod, costTranslated);
     }
 
     public void createInventoryItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, double productWeightIfWeighted) {
-        int costTranslated = (int) costOfProductPerPricingMethod;
+        int costTranslated = (int) (costOfProductPerPricingMethod * 100);
         inventoryService.createInventoryProduct(productId, productPricingMethod, costOfProductPerPricingMethod, costTranslated);
     }
 
     public void createDiscount(String productId, String uniqueDiscountId, double discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType) {
-        int valueTranslated = (int) discountValue;
+        int valueTranslated = (int) (discountValue * 100);
         discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
     }
 
     //Used to scan a Per Unit Item
     public double scanAnItemAtCheckout(String productId) {
-        checkoutService.scanItem(checkoutService.setProduct(productId));
-        return checkoutService.calculateTotal();
+        checkoutService.scanItem( checkoutService.setProduct(productId));
+        double total =  checkoutService.calculateTotal();
+        return (total / 100);
     }
 
     //Used to scan a Per Weight Item
     public double scanAnItemAtCheckout(String productId, double itemWeight) {
         checkoutService.scanItem(checkoutService.setProduct(productId), itemWeight);
-        return checkoutService.calculateTotal();
+        double total = checkoutService.calculateTotal();
+        return (total / 100);
     }
 
     public void deleteAnItemAtCheckout(String productId, int itemQuantityToBeRemoved) {
         checkoutService.deleteItemFromCart(productId, itemQuantityToBeRemoved);
+    }
+
+    public double getTotal() {
+       return ((double) checkoutService.calculateTotal() / 100);
     }
 
     //Singleton implementation

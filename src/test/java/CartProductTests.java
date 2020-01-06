@@ -67,9 +67,6 @@ public class CartProductTests {
         checkoutService.scanItem(chickenSoup);
 
         assertEquals(cartAtCheckout, checkoutService.scanItem(chickenSoup));
-        inventoryService = null;
-        checkoutService = null;
-        discountService = null;
     }
 
     @Test
@@ -77,18 +74,13 @@ public class CartProductTests {
         inventoryService = InventoryService.getInstance();
         checkoutService = CheckoutService.getInstance();
         discountService = DiscountService.getInstance();
-        Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
 
-        checkoutService.scanItem(groundBeef, 1.0);
         checkoutService.scanItem(chickenSoup);
         checkoutService.scanItem(potatoSoup);
 
-        assertEquals(300, checkoutService.calculateTotal());
-        inventoryService = null;
-        checkoutService = null;
-        discountService = null;
+        assertEquals(200, checkoutService.calculateTotal());
     }
 
     @Test
@@ -105,9 +97,6 @@ public class CartProductTests {
         checkoutService.scanItem(potatoSoup);
 
         assertEquals(200, checkoutService.deleteItemFromCart("Ground Beef", 1));
-        inventoryService = null;
-        checkoutService = null;
-        discountService = null;
     }
 
     @Test
@@ -115,25 +104,54 @@ public class CartProductTests {
         inventoryService = InventoryService.getInstance();
         checkoutService = CheckoutService.getInstance();
         discountService = DiscountService.getInstance();
-        Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
         Product tomatoSoup = new Product("Tomato Soup", Product.PricingMethod.Unit, 100);
 
         Discount discount = discountService.createDiscount("Tomato Soup", "markdownTomatoSoup", 50, 0, "BXGY", "Percentage");
         Discount discount2 = discountService.createDiscount("Chicken Soup", "markdownChickenSoup", 20, 0, "Markdown", "Percentage");
-        Discount discount3 = discountService.createDiscount("Ground Beef", "MForNGroundBeef", 100, 200, "XForY", "Percentage");
         HashMap<String, List<Discount>> allDiscounts = discountService.returnAllDiscounts();
 
-        checkoutService.scanItem(groundBeef, 6.0);
         checkoutService.scanItem(chickenSoup);
         checkoutService.scanItem(tomatoSoup);
         checkoutService.scanItem(potatoSoup);
 
 
-        assertEquals(630, checkoutService.calculateTotal());
-        inventoryService = null;
-        checkoutService = null;
-        discountService = null;
+        assertEquals(230, checkoutService.calculateTotal());
+    }
+
+    @Test
+    public void validateWeightedItemDiscountsForCurrency() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
+
+        Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 300);
+
+        Discount discount = discountService.createDiscount("Ground Beef", "markdownBeef", 150, 2, "XForY", "Currency");
+
+        HashMap<String, List<Discount>> allDiscounts = discountService.returnAllDiscounts();
+
+        checkoutService.scanItem(groundBeef, 5.0);
+
+        assertEquals(1200, checkoutService.calculateTotal());
+
+    }
+
+    @Test
+    public void validateWeightedItemDiscountsForPercentage() {
+        inventoryService = InventoryService.getInstance();
+        checkoutService = CheckoutService.getInstance();
+        discountService = DiscountService.getInstance();
+
+        Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 300);
+
+        Discount discount = discountService.createDiscount("Ground Beef", "markdownBeef", 50, 0, "Markdown", "Percentage");
+
+        HashMap<String, List<Discount>> allDiscounts = discountService.returnAllDiscounts();
+
+        checkoutService.scanItem(groundBeef, 6.3);
+
+        assertEquals(945, checkoutService.calculateTotal());
     }
 }

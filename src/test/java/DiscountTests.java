@@ -20,7 +20,6 @@ public class DiscountTests {
         discountService = DiscountService.getInstance();
     }
 
-
     @Before
     public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
         Field discountInstance = DiscountService.class.getDeclaredField("obj");

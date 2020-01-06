@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static Services.DiscountService.allActiveDiscounts;
-
 public class CheckoutService {
     HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
     DiscountService discountService = DiscountService.getInstance();
@@ -42,9 +40,10 @@ public class CheckoutService {
     public int calculateTotal() {
 
        int costBeforeApplieDiscounts = 0;
-
+       int currentTotal = 0;
        //For every list of products in the cart.
        for (String productId : checkoutCart.keySet()) {
+           costBeforeApplieDiscounts = 0;
            int costAfterAppliedDiscounts = 0;
 
            //While working with one product, calculate the cost based on whether that product is
@@ -53,33 +52,45 @@ public class CheckoutService {
                If the product is weight based, then the cost will be the product cost multiplied by the weight of that current product.
             */
            for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
+
                if (checkoutCart.get(productId).get(counter).getProductPricingMethod() == Product.PricingMethod.Unit) {
                    costBeforeApplieDiscounts += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
                } else {
                    int costOfWeightedProduct = 0;
                    costOfWeightedProduct = checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod() *
-                           checkoutCart.get(productId).get(counter).getProductWeightIfWeighted();
+                           this.checkoutCart.get(productId).get(counter).getProductWeightIfWeighted();
                    costBeforeApplieDiscounts += (costOfWeightedProduct / 100);
                }
+
+
            }
 
            //Check for any discounts.
-           if (allActiveDiscounts.size() > 0) {
+           if (discountService.returnAllDiscounts().size() > 0) {
                costAfterAppliedDiscounts = discountService.applyDiscountsToCostOfProducts(checkoutCart.get(productId).get(0), checkoutCart.get(productId).size());
            }
 
            // If the cost after a discount has been applied is less than the cost before discount, then the cost per item will be with discounts applied. Else, it will be the original price.
-           int costPerItem = 0;
-           if (costAfterAppliedDiscounts == 0) {
-               costPerItem = checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+           if (checkoutCart.get(productId).get(0).getProductPricingMethod() == Product.PricingMethod.Unit) {
+               int costPerItem = 0;
+               if (costAfterAppliedDiscounts == 0) {
+                   currentTotal += (checkoutCart.get(productId).get(0).getProductCostPerPricingMethod() * checkoutCart.get(productId).size());
+               } else {
+                   costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+                   currentTotal = currentTotal + (costPerItem);
+               }
+
+
            } else {
-                costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
+               currentTotal = (checkoutCart.get(productId).get(0).getProductCostPerPricingMethod());
+               //currentTotal = currentTotal + ((checkoutCart.get(productId).get(0).getProductCostPerPricingMethod() * checkoutCart.get(productId).get(0).getProductWeightIfWeighted() / 1000));
            }
-            currentTotal = currentTotal + (costPerItem);
        }
 
        return currentTotal;
     }
+
+
 
 
     // After an item has been deleted, recheck the total and return the value.
