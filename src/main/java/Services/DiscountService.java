@@ -340,7 +340,7 @@ public class DiscountService {
                         discountApplicationCounter++;
                     }
                 } else {
-                    if (discount.getLimitForDiscountApplication() == 0) {
+                    if (discount.getLimitForDiscountApplication() == 0 || (discount.getLimitForDiscountApplication() != 0 &&  discountApplicationCounter < discount.getLimitForDiscountApplication())) {
                         int eligibleDiscountApplication = (cloneProduct.getProductWeightIfWeighted() / discount.getQuantityRequiredTriggerDiscount() / 100);
                         if (eligibleDiscountApplication > 0) {
                             int weightRequiredForDiscount = discount.getQuantityRequiredTriggerDiscount() * 100;
@@ -350,6 +350,7 @@ public class DiscountService {
                             cloneProduct.setProductCostPerPricingMethod((int) totalCost);
                             cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                             products.set(counter, cloneProduct);
+                            discountApplicationCounter++;
                         }
 
                     }

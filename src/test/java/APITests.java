@@ -165,4 +165,15 @@ public class APITests  {
 
         assertEquals(6.50, checkout.getTotal());
     }
+
+    @Test
+    public void validateWeightTotalWithXforYDiscountAndLimitCurrency() {
+        checkout.createInventoryItem("Ground Beef", "Weighted", 2);
+        checkout.createDiscount("Ground Beef", "Ground Beef Markdown", 3.00, 2, "XForY", "Currency", 2);
+
+        checkout.scanAnItemAtCheckout("Ground Beef", 2.00);
+        checkout.scanAnItemAtCheckout("Ground Beef", 2.20);
+
+        assertEquals(6.40, checkout.getTotal());
+    }
 }
