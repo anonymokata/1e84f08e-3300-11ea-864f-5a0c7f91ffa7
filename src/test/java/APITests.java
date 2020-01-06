@@ -94,4 +94,16 @@ public class APITests  {
 
         assertEquals(3.00, checkout.getTotal());
     }
+
+    @Test
+    public void validateUnitTotalsWithBxgyDiscountAndLimit() {
+        checkout.createInventoryItem("Tomato Soup", "Unit", 1.50);
+        checkout.createDiscount("Tomato Soup", "Tomato Soup Bxgy", 1.50, 1, "BXGY", "Currency", 1);
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+        checkout.scanAnItemAtCheckout("Tomato Soup");
+
+        assertEquals(4.50, checkout.getTotal());
+    }
 }
