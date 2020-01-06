@@ -46,7 +46,11 @@ public class CheckoutService {
                 checkoutCart.replace(productId, checkoutCart.get(productId), discountService.checkDiscounts(checkoutCart.get(productId)));
             }
             for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
-                currentTotal += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
+                if (checkoutCart.get(productId).get(counter).getProductPricingMethod() == Product.PricingMethod.Weighted && checkoutCart.get(productId).get(counter).getDiscountsApplied().size() == 0) {
+                    currentTotal += ((checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod() * checkoutCart.get(productId).get(counter).getProductWeightIfWeighted()) / 100);
+                } else {
+                    currentTotal += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
+                }
             }
 
         }

@@ -115,4 +115,14 @@ public class APITests  {
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
         assertEquals(2.00, checkout.getTotal());
     }
+
+    @Test
+    public void validateWeightTotalWithBxgyDiscountAndLimitCurrency() {
+        checkout.createInventoryItem("Ground Beef", "Weighted", 2);
+        checkout.createDiscount("Ground Beef", "Ground Beef Markdown", 2, 1, "BXGY", "Currency", 1);
+
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+        checkout.scanAnItemAtCheckout("Ground Beef", 2);
+        assertEquals(6.00, checkout.getTotal());
+    }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="085f3049-3670-4151-b2f7-ec9f8a1af1ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entities/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entities/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/APITests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/APITests.java" afterDir="false" />
     </list>
@@ -40,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="554">
-              <caret line="313" column="5" lean-forward="true" selection-start-line="313" selection-start-column="5" selection-end-line="313" selection-end-column="5" />
+            <state relative-caret-position="605">
+              <caret line="308" column="22" selection-start-line="308" selection-start-column="22" selection-end-line="308" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#583#607#0" expanded="true" />
@@ -52,7 +52,7 @@
                 <element signature="e#3367#3368#0" expanded="true" />
                 <element signature="e#6197#6207#0" expanded="true" />
                 <element signature="e#10757#10766#0" expanded="true" />
-                <element signature="e#18196#18197#0" expanded="true" />
+                <element signature="e#18809#18810#0" expanded="true" />
                 <element signature="method#getInstance#0;class#DiscountService#0" />
               </folding>
             </state>
@@ -100,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/APITests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+            <state relative-caret-position="541">
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,7 +127,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Discount.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
-              <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
                 <element signature="e#417#418#0" expanded="true" />
                 <element signature="e#455#456#0" expanded="true" />
@@ -145,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="272">
+              <caret line="49" column="190" selection-start-line="49" selection-start-column="190" selection-end-line="49" selection-end-column="190" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#899#908#0" expanded="true" />
@@ -159,8 +159,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            <state relative-caret-position="476">
+              <caret line="28" column="56" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1179#1180#0" expanded="true" />
@@ -202,10 +202,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Services/InventoryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/Entities/Product.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Checkout.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" />
-        <option value="$PROJECT_DIR$/src/test/java/APITests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Entities/Discount.java" />
+        <option value="$PROJECT_DIR$/src/test/java/APITests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Services/DiscountService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Services/CheckoutService.java" />
       </list>
     </option>
   </component>
@@ -314,7 +314,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.APITests.validateWeightTotalWithBxgyDiscountCurrency">
+  <component name="RunManager" selected="JUnit.APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency">
     <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
@@ -335,6 +335,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="APITests.validateUnitTotalsWithBxgyDiscountAndLimitCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="APITests" />
+      <option name="METHOD_NAME" value="validateUnitTotalsWithBxgyDiscountAndLimitCurrency" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CheckoutOrderTotal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="APITests" />
+      <option name="METHOD_NAME" value="validateWeightTotalWithBxgyDiscountAndLimitCurrency" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="APITests.validateWeightTotalWithBxgyDiscountCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CheckoutOrderTotal" />
       <option name="PACKAGE_NAME" value="" />
@@ -345,33 +365,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="APITests.validateWeightTotalsWithMarkdownDiscount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="APITests" />
-      <option name="METHOD_NAME" value="validateWeightTotalsWithMarkdownDiscount" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CheckoutOrderTotal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="APITests" />
-      <option name="METHOD_NAME" value="validateWeightTotalsWithMarkdownDiscountIncludeLimit" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" />
+        <item itemvalue="JUnit.APITests.validateUnitTotalsWithBxgyDiscountAndLimitCurrency" />
         <item itemvalue="JUnit.APITests.validateWeightTotalWithBxgyDiscountCurrency" />
         <item itemvalue="JUnit.APITests.validateUnitTotalsWithBxgyDiscountAndLimit" />
         <item itemvalue="JUnit.APITests.validateUnitTotalsWithBxgyDiscount" />
-        <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscountIncludeLimit" />
-        <item itemvalue="JUnit.APITests.validateWeightTotalsWithMarkdownDiscount" />
       </list>
     </recent_temporary>
   </component>
@@ -390,44 +390,44 @@
       <workItem from="1577827818202" duration="4236000" />
       <workItem from="1577910039550" duration="599000" />
       <workItem from="1577927725323" duration="11760000" />
-      <workItem from="1578278277596" duration="30656000" />
+      <workItem from="1578278277596" duration="31494000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 15m 06s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 45m 11s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 15m 34s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 46m 25s.xml">
+      <configuration name="APITests.validateUnitTotalsWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 18m 44s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 46m 28s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 18m 47s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 46m 30s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateWeightTotalsWithMarkdownDiscount - 2020.01.06 at 08h 18m 50s.xml">
-      <configuration name="APITests.validateWeightTotalsWithMarkdownDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 46m 58s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 21m 09s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 47m 19s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 21m 12s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 48m 09s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 23m 58s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 48m 59s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscount - 2020.01.06 at 08h 24m 30s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscount" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 49m 16s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="APITests_validateUnitTotalsWithBxgyDiscountAndLimit - 2020.01.06 at 08h 26m 07s.xml">
-      <configuration name="APITests.validateUnitTotalsWithBxgyDiscountAndLimit" configurationId="JUnit" />
+    <history-entry file="APITests_validateWeightTotalWithBxgyDiscountAndLimitCurrency - 2020.01.06 at 08h 53m 21s.xml">
+      <configuration name="APITests.validateWeightTotalWithBxgyDiscountAndLimitCurrency" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66723000" />
+    <option name="totallyTimeSpent" value="67561000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -452,14 +452,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.33044422" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.1928494" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.1928494" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32502708" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32502708" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32394367" />
       <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
@@ -511,7 +511,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java</url>
-          <line>128</line>
+          <line>132</line>
           <properties />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
@@ -526,12 +526,6 @@
           <line>17</line>
           <properties />
           <option name="timeStamp" value="97" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/APITests.java</url>
-          <line>118</line>
-          <properties />
-          <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/APITests.java</url>
@@ -565,21 +559,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java</url>
-          <line>48</line>
+          <line>51</line>
           <properties />
           <option name="timeStamp" value="172" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java</url>
-          <line>52</line>
+          <line>56</line>
           <properties />
           <option name="timeStamp" value="173" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>277</line>
-          <properties />
-          <option name="timeStamp" value="176" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/APITests.java</url>
@@ -589,39 +577,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>288</line>
-          <properties />
-          <option name="timeStamp" value="178" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>286</line>
-          <properties />
-          <option name="timeStamp" value="179" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>294</line>
-          <properties />
-          <option name="timeStamp" value="180" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>293</line>
-          <properties />
-          <option name="timeStamp" value="181" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>299</line>
-          <properties />
-          <option name="timeStamp" value="182" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
-          <line>308</line>
+          <line>311</line>
           <properties />
           <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
+          <line>306</line>
+          <properties />
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/APITests.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
+          <line>304</line>
+          <properties />
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java</url>
+          <line>303</line>
+          <properties />
+          <option name="timeStamp" value="188" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -663,26 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1400#1401#0" expanded="true" />
-            <element signature="e#1594#1595#0" expanded="true" />
-            <element signature="e#1644#1645#0" expanded="true" />
-            <element signature="e#2237#2238#0" expanded="true" />
-            <element signature="e#2293#2294#0" expanded="true" />
-            <element signature="e#2342#2343#0" expanded="true" />
-            <element signature="e#2381#2382#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -740,22 +702,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#899#908#0" expanded="true" />
-            <element signature="method#deleteItemFromCart#0;class#CheckoutService#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Discount.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#417#418#0" expanded="true" />
             <element signature="e#455#456#0" expanded="true" />
@@ -769,10 +719,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Entities/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="56" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1211#1212#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1400#1401#0" expanded="true" />
+            <element signature="e#1594#1595#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+            <element signature="e#2237#2238#0" expanded="true" />
+            <element signature="e#2293#2294#0" expanded="true" />
+            <element signature="e#2342#2343#0" expanded="true" />
+            <element signature="e#2381#2382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Services/DiscountService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="313" column="5" lean-forward="true" selection-start-line="313" selection-start-column="5" selection-end-line="313" selection-end-column="5" />
+        <state relative-caret-position="605">
+          <caret line="308" column="22" selection-start-line="308" selection-start-column="22" selection-end-line="308" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#583#607#0" expanded="true" />
@@ -783,16 +753,28 @@
             <element signature="e#3367#3368#0" expanded="true" />
             <element signature="e#6197#6207#0" expanded="true" />
             <element signature="e#10757#10766#0" expanded="true" />
-            <element signature="e#18196#18197#0" expanded="true" />
+            <element signature="e#18809#18810#0" expanded="true" />
             <element signature="method#getInstance#0;class#DiscountService#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Services/CheckoutService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="49" column="190" selection-start-line="49" selection-start-column="190" selection-end-line="49" selection-end-column="190" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#899#908#0" expanded="true" />
+            <element signature="method#deleteItemFromCart#0;class#CheckoutService#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/APITests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="115" column="25" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+        <state relative-caret-position="541">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

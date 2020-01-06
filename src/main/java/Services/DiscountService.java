@@ -279,7 +279,7 @@ public class DiscountService {
         int limiter = 0;
 
             for (int counter = 0; counter < products.size(); counter++) {
-                Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod());
+                Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getProductWeightIfWeighted());
                 List<String> discountsApplied = new ArrayList<>();
                 discountsApplied.addAll(cloneProduct.getDiscountsApplied());
 
@@ -301,8 +301,13 @@ public class DiscountService {
                         discountApplicationCounter++;
                     }
                 } else {
-                    if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName()) && cloneProduct.getProductWeightIfWeighted() > discount.getQuantityRequiredTriggerDiscount()) {
+                    if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName()) && cloneProduct.getProductWeightIfWeighted() >= discount.getQuantityRequiredTriggerDiscount() && discount.getLimitForDiscountApplication() == 0) {
                         cloneProduct.setProductCostPerPricingMethod((cloneProduct.getProductCostPerPricingMethod() * cloneProduct.getProductWeightIfWeighted()) - (cloneProduct.getProductCostPerPricingMethod()));
+                    } else if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName()) && cloneProduct.getProductWeightIfWeighted() >= discount.getQuantityRequiredTriggerDiscount() && discount.getLimitForDiscountApplication() > limiter) {
+                        cloneProduct.setProductCostPerPricingMethod(((cloneProduct.getProductCostPerPricingMethod() * cloneProduct.getProductWeightIfWeighted()) / 100) - (cloneProduct.getProductCostPerPricingMethod()));
+                        cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
+                        products.set(counter, cloneProduct);
+                        limiter++;
                     }
                 }
             }
