@@ -101,9 +101,6 @@ public class CheckoutService {
            }
 
            //Check for any discounts.
-           if (discountService.returnAllDiscounts().size() > 0) {
-               costAfterAppliedDiscounts = discountService.applyDiscountsToCostOfProducts(checkoutCart.get(productId).get(0), checkoutCart.get(productId).size());
-           }
 
            // If the cost after a discount has been applied is less than the cost before discount, then the cost per item will be with discounts applied. Else, it will be the original price.
            if (checkoutCart.get(productId).get(0).getProductPricingMethod() == Product.PricingMethod.Unit) {

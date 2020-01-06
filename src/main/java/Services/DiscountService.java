@@ -2,7 +2,6 @@ package Services;
 
 import Entities.Discount;
 import Entities.Product;
-import Services.InventoryService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,15 +69,7 @@ public class DiscountService {
 
     //This is used to add a new discount to the hashmap without having to call the create discount service.
     //Used for testing currently.
-    public void addExistingDiscountToDiscountInventory(Discount discount) {
-        if (allActiveDiscounts.containsKey(discount.getProductIdAssociated())) {
-            allActiveDiscounts.get(discount.getProductIdAssociated()).add(discount);
-        } else {
-            List<Discount> tempList = new ArrayList<Discount>();
-            tempList.add(discount);
-            allActiveDiscounts.put(discount.getProductIdAssociated(), tempList);
-        }
-    }
+
     public HashMap<String, List<Discount>> returnAllDiscounts() {
         return allActiveDiscounts;
     }
@@ -87,53 +78,7 @@ public class DiscountService {
     This method will account for the 3 different types of discounts in requirements.
         BXGY, BMForN, Markdown
      */
-    public int applyDiscountsToCostOfProducts(Product product, int quantity) {
 
-        List<Discount> discounts = getRelevantDiscountsForProduct(product.getProductId());
-        int runningTotalForProduct = 0;
-
-            for (int counter = 0; counter < quantity; counter++) {
-
-                //Set the cost of the current product
-                int costOfCurrentItem = product.getProductPricingMethod() == Product.PricingMethod.Unit ? product.getProductCostPerPricingMethod() : product.getProductCostPerPricingMethod() * product.getProductWeightIfWeighted();
-
-                for (Discount discount : discounts) {
-                    //Check if the limit set in the current discount is greater than the quantity. If it is not, set the quantity to the limit.
-                    int limit = quantity < discount.getLimitForDiscountApplication() ? quantity : discount.getLimitForDiscountApplication();
-                    quantity = limit == 0 ? quantity : limit;
-
-                    //Account for discount of weighted items.
-                    if (product.getProductPricingMethod() == Product.PricingMethod.Weighted) {
-                            runningTotalForProduct = applyDiscountForWeightedItems(product, discount);
-                        }
-
-                        //If the discount type is Bulk (BMForN), the total price is the cost defined in the discount / the number of products required for the discount.
-                        if (discount.getDiscountType() == Discount.DiscountType.BXGY || discount.getDiscountType() == Discount.DiscountType.Markdown) {
-                            costOfCurrentItem = applyValueOffDiscounts(product, discount, costOfCurrentItem, counter);
-                            //This checks to see if the discount is a markdown. The trigger will be zero for markdowns, as no quantities are required.
-
-                        } else {
-                            costOfCurrentItem = 0;
-                        }
-
-
-                }
-            //If the discount application has reduced the price below zero, then bring the price back to zero.
-            if (costOfCurrentItem < 0) {
-                costOfCurrentItem = 0;
-            }
-
-            //If discount application has reduced the price below zero, then bring price back to zero.
-            if (runningTotalForProduct < 0) {
-                runningTotalForProduct = 0;
-            }
-
-            runningTotalForProduct += costOfCurrentItem;
-
-        }
-
-            return runningTotalForProduct;
-    }
 
     //Returns all discounts associated to a specific product.
     public List<Discount> getRelevantDiscountsForProduct(String productId) {
@@ -146,73 +91,6 @@ public class DiscountService {
         return discounts;
     }
 
-    public int applyDiscountForWeightedItems(Product product, Discount discount) {
-
-        int quantityRequired = discount.getQuantityRequiredTriggerDiscount() * 100;
-        int costPerWeight = product.getProductCostPerPricingMethod();
-        int totalWeight = product.getProductWeightIfWeighted();
-        int discountApplicationEligibility;
-        if (discount.getDiscountType() == Discount.DiscountType.BXGY) {
-            discountApplicationEligibility = quantityRequired > 0 ? ((totalWeight / 100) / ((quantityRequired / 100)) / 2) : 0 ;
-        } else {
-            discountApplicationEligibility = quantityRequired > 0 ? (totalWeight / 100) / ((quantityRequired / 100)) : 0;
-        }
-
-        if (product.getProductWeightIfWeighted() >= quantityRequired) {
-            //If the value type is currency, then the cost after a discount will be the Weight multiplied by the cost per weight subtracted from the discount value.
-            //Else, the cost will be weight multiplied by the cost per weight subtracted by the cost per weight times the percent off.
-            if (discount.getValueType() == Discount.ValueType.Currency) {
-                product.setProductCostPerPricingMethod(((product.getProductWeightIfWeighted() * costPerWeight) / 100) - (discount.getValueBasedOnDiscountType() * discountApplicationEligibility));
-            } else {
-                int weight = product.getProductWeightIfWeighted();
-                double originalCost = product.getProductCostPerPricingMethod();
-                double deduction = originalCost * ((double) discount.getValueBasedOnDiscountType() / 100);
-                double productCost;
-                if (quantityRequired == 0) {
-                    productCost = ((weight * originalCost) / 100) - ((deduction * weight) / 100);
-                } else {
-                    productCost = ((weight * originalCost) / 100) - (deduction * discountApplicationEligibility);
-                }
-                product.setProductCostPerPricingMethod((int) productCost);
-            }
-        }
-        return product.getProductCostPerPricingMethod();
-    }
-
-    public int applyValueOffDiscounts(Product product, Discount discount, int costOfCurrentItem, int counter) {
-        if (discount.getQuantityRequiredTriggerDiscount() == 0) {
-            //Covers currency based totals and percentage based totals.
-            if (discount.getValueType() == Discount.ValueType.Currency) {
-                costOfCurrentItem -= discount.getValueBasedOnDiscountType();
-            } else {
-                double tempCost = 0;
-                tempCost = (product.getProductCostPerPricingMethod() * (double) discount.getValueBasedOnDiscountType() / 100);
-                costOfCurrentItem -= tempCost;
-                System.out.println(costOfCurrentItem);
-            }
-
-            //If the trigger is equal to the counter, then the criteria has been met for the BXGY discounts.
-            //Covers percentage and currency based totals.
-        } else if (discount.getQuantityRequiredTriggerDiscount() == counter) {
-            if (discount.getValueType() == Discount.ValueType.Currency) {
-                costOfCurrentItem -= discount.getValueBasedOnDiscountType();
-            } else {
-                double tempCost = 0;
-                tempCost = (product.getProductCostPerPricingMethod() * (double) discount.getValueBasedOnDiscountType() / 100);
-                costOfCurrentItem -= (int) tempCost;
-                System.out.println(costOfCurrentItem);
-            }
-
-        } else if (discount.getValueType() == Discount.ValueType.Percentage) {
-            double tempCost = 0;
-            tempCost = (product.getProductCostPerPricingMethod() * (double) discount.getValueBasedOnDiscountType() / 100);
-            costOfCurrentItem = (int) tempCost;
-            System.out.println(costOfCurrentItem);
-        }
-
-        return costOfCurrentItem;
-    }
-
     public int applyPriceOffQuantityDiscounts(Discount discount) {
         return discount.getValueBasedOnDiscountType() / discount.getQuantityRequiredTriggerDiscount();
     }
@@ -223,28 +101,36 @@ public class DiscountService {
 
 
         for (Discount discount : discounts) {
-            if (discount.getDiscountType() == Discount.DiscountType.Markdown) {
-                productsAppended = applyMarkdown(products, discount);
-            } else if(discount.getDiscountType() == Discount.DiscountType.BXGY) {
-                productsAppended = applyBxgy(products, discount);
-            } else if (discount.getDiscountType() == Discount.DiscountType.XForY) {
-                productsAppended = applyXfory(products, discount);
+                if (discount.getDiscountType() == Discount.DiscountType.Markdown) {
+                    productsAppended = applyMarkdownCurrencyBased(products, discount);
+                } else if (discount.getDiscountType() == Discount.DiscountType.BXGY) {
+                    productsAppended = applyBxgyCurrencyBased(products, discount);
+                } else if (discount.getDiscountType() == Discount.DiscountType.XForY) {
+                    productsAppended = applyXforyCurrencyBased(products, discount);
+
             }
         }
         return productsAppended;
     }
 
-    public List<Product> applyMarkdown(List<Product> products, Discount discount) {
+    public List<Product> applyMarkdownCurrencyBased(List<Product> products, Discount discount) {
 
         //To avoid setting existent instance objects to new values in the inventory, object is cloned instead of using getters and setters.
         for (int counter = 0; counter < products.size(); counter++) {
             Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod());
             List<String> discountsApplied = new ArrayList<>();
             discountsApplied.addAll(cloneProduct.getDiscountsApplied());
+
             if (cloneProduct.getProductPricingMethod() == Product.PricingMethod.Unit) {
                 if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName())) {
                     if (discount.getLimitForDiscountApplication() == 0) {
-                        cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                        if (discount.getValueType() == Discount.ValueType.Currency) {
+                            cloneProduct.setProductCostPerPricingMethod(cloneProduct.getProductCostPerPricingMethod() - discount.getValueBasedOnDiscountType());
+                        } else {
+                            double valueOff = ((((double) discount.getValueBasedOnDiscountType() / 1000) * (double) cloneProduct.getProductCostPerPricingMethod()) / 10);
+                            double totalCost = cloneProduct.getProductCostPerPricingMethod() - valueOff;
+                            cloneProduct.setProductCostPerPricingMethod((int)totalCost);
+                        }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         products.set(counter, cloneProduct);
                     } else if (counter != discount.getLimitForDiscountApplication()) {
@@ -274,7 +160,7 @@ public class DiscountService {
         return products;
     }
 
-    public List<Product> applyBxgy(List<Product> products, Discount discount) {
+    public List<Product> applyBxgyCurrencyBased(List<Product> products, Discount discount) {
         int discountApplicationCounter = 0;
         int limiter = 0;
 
@@ -314,7 +200,7 @@ public class DiscountService {
         return products;
     }
 
-    public List<Product> applyXfory(List<Product> products, Discount discount) {
+    public List<Product> applyXforyCurrencyBased(List<Product> products, Discount discount) {
         int discountApplicationCounter = 0;
         for (int counter = 0; counter < products.size(); counter++) {
             Product cloneProduct = new Product(products.get(counter).getProductId(), products.get(counter).getProductPricingMethod(), products.get(counter).getProductCostPerPricingMethod(), products.get(counter).getProductWeightIfWeighted());
@@ -357,7 +243,6 @@ public class DiscountService {
                 }
             }
         }
-
 
         return products;
     }
