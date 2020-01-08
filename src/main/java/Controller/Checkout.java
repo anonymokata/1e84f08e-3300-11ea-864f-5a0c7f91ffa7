@@ -25,26 +25,29 @@ public class Checkout {
 
     public HashMap<String, Product> productInventory = new HashMap<String, Product>();
     public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
+
     InventoryService inventoryService = new InventoryService(checkoutService);
     DiscountService discountService = new DiscountService(checkoutService);
 
-    //Make this class a singleton so that the services aren't instantied at every call.
-
+    //Used to create per unit items (Soup can / Cereal /Etc)
     public void createInventoryItem(String productId, String pricingMethod, double costOfProductPerPricingMethod) {
         int costTranslated = (int) (costOfProductPerPricingMethod * 100);
         inventoryService.createInventoryProduct(productId, pricingMethod, costTranslated);
     }
 
+    //Used to create weighted items (Ground Beef / Turkey)
     public void createInventoryItem(String productId, String productPricingMethod, int costOfProductPerPricingMethod, double productWeightIfWeighted) {
         int costTranslated = (int) (costOfProductPerPricingMethod * 100);
         inventoryService.createInventoryProduct(productId, productPricingMethod, costOfProductPerPricingMethod, costTranslated);
     }
 
+    //Used to create discounts without any item limits
     public void createDiscount(String productId, String uniqueDiscountId, double discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType) {
         int valueTranslated = (int) (discountValue * 100);
         discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType);
     }
 
+    //Used to create discounts with item limits
     public void createDiscount(String productId, String uniqueDiscountId, double discountValue, int quantityTriggerForDiscount, String typeOfDiscount, String discountDeductionValueType, int limitForDiscount) {
         int valueTranslated = (int) (discountValue * 100);
         discountService.createDiscount(productId, uniqueDiscountId, valueTranslated, quantityTriggerForDiscount, typeOfDiscount, discountDeductionValueType, limitForDiscount);
@@ -64,26 +67,13 @@ public class Checkout {
         return (total / 100);
     }
 
+    //Used to delete quantities of items
     public void deleteAnItemAtCheckout(String productId, int itemQuantityToBeRemoved) {
         checkoutService.deleteItemFromCart(productId, itemQuantityToBeRemoved);
     }
 
+    //Used to calculate final total. scan item will calculate total without discounts applied, as discounts are applied after final item is scanned.
     public double getTotal() {
        return ((double) checkoutService.calculateCurrentTotalWithDiscounts() / 100);
     }
-
-    //Singleton implementation
-    /*************************************************************************************/
-//
-//    private static Checkout obj;
-//
-//    private Checkout() {}
-//
-//    public static synchronized Checkout getInstance() {
-//        if (obj == null)
-//            obj = new Checkout();
-//        return obj;
-//    }
-
-    /*************************************************************************************/
 }

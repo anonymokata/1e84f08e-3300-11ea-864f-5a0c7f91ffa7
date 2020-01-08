@@ -8,12 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CheckoutService {
-    public HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
+
+
     Checkout checkout;
     InventoryService inventoryService = new InventoryService(this);
     DiscountService discountService = new DiscountService(this);
 
-
+    public HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
 
     public HashMap<String, List<Product>> scanItem(Product scannedProduct) {
 
@@ -23,14 +24,14 @@ public class CheckoutService {
         if (checkoutCart.containsKey(scannedProduct.getProductId())) {
             checkoutCart.get(scannedProduct.getProductId()).add(product);
         } else {
-            List<Product> tempList = new ArrayList<Product>();
+            List<Product> tempList = new ArrayList<>();
             tempList.add(product);
             checkoutCart.put(scannedProduct.getProductId(), tempList);
         }
-
         return checkoutCart;
     }
 
+    //Assign a new product object the values of a product object in the inventory service hashmap
     public Product setProduct(String productId) {
         Product product = inventoryService.getProductFromInventory(productId);
         return product;
@@ -43,6 +44,7 @@ public class CheckoutService {
        return scanItem(product);
     }
 
+    //Calculate total with discounts
     public int calculateCurrentTotalWithDiscounts() {
         int currentTotal = 0;
 
@@ -62,6 +64,7 @@ public class CheckoutService {
         return currentTotal;
     }
 
+    //Calculate Total without discounts
     public int calculateCurrentTotal() {
         int currentTotal = 0;
         for (String productId : checkoutCart.keySet()) {
@@ -69,9 +72,7 @@ public class CheckoutService {
                 currentTotal += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
             }
         }
-
         return currentTotal;
-
     }
 
 
@@ -146,7 +147,7 @@ public class CheckoutService {
                }
            }
        }
-       return calculateTotal();
+       return calculateCurrentTotal();
     }
 
     public CheckoutService(Checkout checkout) {
