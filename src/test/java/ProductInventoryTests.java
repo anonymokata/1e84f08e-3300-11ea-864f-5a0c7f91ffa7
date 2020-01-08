@@ -1,18 +1,12 @@
 import Controller.Checkout;
 import Entities.Product;
 import Services.CheckoutService;
-import Services.DiscountService;
 import Services.InventoryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.lang.reflect.Field;
-
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNotSame;
 
 @RunWith(JUnit4.class)
 public class ProductInventoryTests {

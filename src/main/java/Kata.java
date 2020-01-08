@@ -13,10 +13,9 @@ public class Kata {
         checkout.scanAnItemAtCheckout("Tomato Soup");
         checkout.scanAnItemAtCheckout("Chicken Soup");
         checkout.scanAnItemAtCheckout("Chicken Soup");
+        checkout.deleteAnItemAtCheckout("Chicken Soup", 1);
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
-
-        //Expected output :
         System.out.println(checkout.getTotal());
     }
 }

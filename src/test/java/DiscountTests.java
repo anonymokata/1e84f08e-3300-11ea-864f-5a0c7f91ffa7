@@ -2,15 +2,10 @@ import Controller.Checkout;
 import Entities.Discount;
 import Services.CheckoutService;
 import Services.DiscountService;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.lang.reflect.Field;
-
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(JUnit4.class)

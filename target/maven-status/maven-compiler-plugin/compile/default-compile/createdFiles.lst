@@ -1,0 +1,10 @@
+Controller\Checkout.class
+Entities\Product.class
+Entities\Product$PricingMethod.class
+Kata.class
+Entities\Discount.class
+Services\CheckoutService.class
+Services\InventoryService.class
+Entities\Discount$ValueType.class
+Services\DiscountService.class
+Entities\Discount$DiscountType.class
