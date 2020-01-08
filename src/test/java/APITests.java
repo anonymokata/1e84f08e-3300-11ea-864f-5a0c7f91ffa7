@@ -93,7 +93,7 @@ public class APITests  {
 
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
-        assertEquals(3.00, checkout.getTotal());
+        assertEquals(3.50, checkout.getTotal());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class APITests  {
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
-        assertEquals(7.00, checkout.getTotal());
+        assertEquals(7.50, checkout.getTotal());
     }
 
     @Test
@@ -125,7 +125,7 @@ public class APITests  {
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
         checkout.scanAnItemAtCheckout("Ground Beef", 2);
 
-        assertEquals(7.00, checkout.getTotal());
+        assertEquals(7.50, checkout.getTotal());
     }
 
     @Test

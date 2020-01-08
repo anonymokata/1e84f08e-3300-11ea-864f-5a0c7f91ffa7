@@ -3,24 +3,16 @@ package Entities;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 public class Discount {
-    String productIdAssociated;
-    String uniqueDiscountName;
-    int valueBasedOnDiscountType;
-    int quantityRequiredTriggerDiscount;
-    int valueOfBulkItems;
-    int limitForDiscountApplication;
-    DiscountType discountType;
-    ValueType valueType;
-    int amountOffOfBxgy;
 
-    public int getAmountOffOfBxgy() {
-        return amountOffOfBxgy;
-    }
+    private String productIdAssociated;
+    private String uniqueDiscountName;
+    private int valueBasedOnDiscountType;
+    private int quantityRequiredTriggerDiscount;
+    private int limitForDiscountApplication;
+    private DiscountType discountType;
+    private ValueType valueType;
 
-    public void setAmountOffOfBxgy(int amountOffOfBxgy) {
-        this.amountOffOfBxgy = amountOffOfBxgy;
-    }
-
+    //Discount without limit constructor
     public Discount(String productIdAssociated, String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType) {
         this.productIdAssociated = productIdAssociated;
         this.uniqueDiscountName = uniqueDiscountName;
@@ -30,7 +22,7 @@ public class Discount {
         this.valueType = valueType;
     }
 
-    //Method overloading to incorporate limits on discounts.
+    //Discount with limit constructor
     public Discount(String productIdAssociated,String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, DiscountType discountType, ValueType valueType, int limitForDiscountApplication) {
         this.productIdAssociated = productIdAssociated;
         this.uniqueDiscountName = uniqueDiscountName;
@@ -45,64 +37,28 @@ public class Discount {
         return productIdAssociated;
     }
 
-    public void setProductIdAssociated(String productIdAssociated) {
-        this.productIdAssociated = productIdAssociated;
-    }
-
     public String getUniqueDiscountName() {
         return uniqueDiscountName;
-    }
-
-    public void setUniqueDiscountName(String uniqueDiscountName) {
-        this.uniqueDiscountName = uniqueDiscountName;
     }
 
     public int getValueBasedOnDiscountType() {
         return valueBasedOnDiscountType;
     }
 
-    public void setValueBasedOnDiscountType(int valueBasedOnDiscountType) {
-        this.valueBasedOnDiscountType = valueBasedOnDiscountType;
-    }
-
     public int getQuantityRequiredTriggerDiscount() {
         return quantityRequiredTriggerDiscount;
-    }
-
-    public void setQuantityRequiredTriggerDiscount(int quantityRequiredTriggerDiscount) {
-        this.quantityRequiredTriggerDiscount = quantityRequiredTriggerDiscount;
-    }
-
-    public int getValueOfBulkItems() {
-        return valueOfBulkItems;
-    }
-
-    public void setValueOfBulkItems(int valueOfBulkItems) {
-        this.valueOfBulkItems = valueOfBulkItems;
     }
 
     public DiscountType getDiscountType() {
         return discountType;
     }
 
-    public void setDiscountType(DiscountType discountType) {
-        this.discountType = discountType;
-    }
-
     public ValueType getValueType() {
         return valueType;
     }
 
-    public void setValueType(ValueType valueType) {
-        this.valueType = valueType;
-    }
-
     public int getLimitForDiscountApplication() {
         return limitForDiscountApplication;
-    }
-
-    public void setLimitForDiscountApplication(int limitForDiscountApplication) {
-        this.limitForDiscountApplication = limitForDiscountApplication;
     }
 
     public enum DiscountType {Markdown, BXGY, XForY}

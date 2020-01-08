@@ -75,61 +75,6 @@ public class CheckoutService {
         return currentTotal;
     }
 
-
-
-    public int calculateTotal() {
-
-       int costBeforeApplieDiscounts = 0;
-       int currentTotal = 0;
-       //For every list of products in the cart.
-       for (String productId : checkoutCart.keySet()) {
-           costBeforeApplieDiscounts = 0;
-           int costAfterAppliedDiscounts = 0;
-
-           //While working with one product, calculate the cost based on whether that product is
-           // priced per unit or per weight.
-           /*
-               If the product is weight based, then the cost will be the product cost multiplied by the weight of that current product.
-            */
-           for (int counter = 0; counter < checkoutCart.get(productId).size(); counter++) {
-
-               if (checkoutCart.get(productId).get(counter).getProductPricingMethod() == Product.PricingMethod.Unit) {
-                   costBeforeApplieDiscounts += checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod();
-               } else {
-                   int costOfWeightedProduct = 0;
-                   costOfWeightedProduct = checkoutCart.get(productId).get(counter).getProductCostPerPricingMethod() *
-                           this.checkoutCart.get(productId).get(counter).getProductWeightIfWeighted();
-                   costBeforeApplieDiscounts += (costOfWeightedProduct / 100);
-               }
-
-
-           }
-
-           //Check for any discounts.
-
-           // If the cost after a discount has been applied is less than the cost before discount, then the cost per item will be with discounts applied. Else, it will be the original price.
-           if (checkoutCart.get(productId).get(0).getProductPricingMethod() == Product.PricingMethod.Unit) {
-               int costPerItem = 0;
-               if (costAfterAppliedDiscounts == 0) {
-                   currentTotal += (checkoutCart.get(productId).get(0).getProductCostPerPricingMethod() * checkoutCart.get(productId).size());
-               } else {
-                   costPerItem = costAfterAppliedDiscounts < costBeforeApplieDiscounts ? costAfterAppliedDiscounts : checkoutCart.get(productId).get(0).getProductCostPerPricingMethod();
-                   currentTotal = currentTotal + (costPerItem);
-               }
-
-
-           } else {
-               currentTotal = (checkoutCart.get(productId).get(0).getProductCostPerPricingMethod());
-               //currentTotal = currentTotal + ((checkoutCart.get(productId).get(0).getProductCostPerPricingMethod() * checkoutCart.get(productId).get(0).getProductWeightIfWeighted() / 1000));
-           }
-       }
-
-       return currentTotal;
-    }
-
-
-
-
     // After an item has been deleted, recheck the total and return the value.
     public int deleteItemFromCart(String productId, int quantity) {
 
@@ -154,6 +99,9 @@ public class CheckoutService {
         this.checkout = checkout;
     }
 
+    //Getters and Setters are used for IOC/DI purposes to mock state
+    /*******************************************************************/
+
     public void setProductInventory(String productId, Product product) {
         checkout.productInventory.put(productId, product);
 
@@ -170,17 +118,4 @@ public class CheckoutService {
     public HashMap<String, List<Discount>> getDiscountInventory() {
         return checkout.allActiveDiscounts;
     }
-
-    //Singleton implementation
-    /*************************************************************************************/
-//    private static CheckoutService obj;
-//
-//    private CheckoutService() {}
-//
-//    public static synchronized CheckoutService getInstance() {
-//        if (obj == null)
-//            obj = new CheckoutService();
-//        return obj;
-//    }
-
 }

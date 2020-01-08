@@ -37,7 +37,6 @@ public class InventoryService {
 
     public String removeInventoryProduct(String productId) {
 
-        //Accounts for Null Pointer Exceptions during removal of products.
         if (productInventory.containsKey(productId)) {
             if(productInventory.size() > 1 ) {
                 productInventory.remove(productId);
@@ -45,7 +44,6 @@ public class InventoryService {
                 productInventory = null;
             }
         }
-
         return productId + " removed.";
     }
 
@@ -56,17 +54,4 @@ public class InventoryService {
     public InventoryService(CheckoutService checkoutService) {
         this.checkoutService = checkoutService;
     }
-
-
-    //Singleton implementation
-    /*************************************************************************************/
-//    private static InventoryService obj;
-//
-//    private InventoryService() {}
-//
-//    public static synchronized InventoryService getInstance() {
-//        if (obj == null)
-//            obj = new InventoryService();
-//        return obj;
-//    }
 }

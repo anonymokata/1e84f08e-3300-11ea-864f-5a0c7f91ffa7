@@ -13,19 +13,14 @@ public class Product {
     private int productWeightIfWeighted;
     private List<String> discountsApplied = new ArrayList<>();
 
-
-
-    /*
-                    There will be two constructors.
-                    First Constructor will be used to assign properties of a product that
-                    is not priced based on weight.
-                 */
+    //Per Unit Product Constructor
     public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod) {
         this.productId = productId;
         this.productPricingMethod = productPricingMethod;
         this.productCostPerPricingMethod = productCostPerPricingMethod;
     }
 
+    //Per Weight Product Constructor
     public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod, int productWeightIfWeighted) {
         this.productId = productId;
         this.productPricingMethod = productPricingMethod;
@@ -33,27 +28,8 @@ public class Product {
         this.productWeightIfWeighted = productWeightIfWeighted;
     }
 
-    public Product(String productId, PricingMethod productPricingMethod, int productCostPerPricingMethod, List<String> discountsApplied) {
-        this.productId = productId;
-        this.productPricingMethod = productPricingMethod;
-        this.productCostPerPricingMethod = productCostPerPricingMethod;
-        this.discountsApplied = discountsApplied;
-    }
-
     public String getProductId() {
         return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public PricingMethod getProductPricingMethod() {
-        return productPricingMethod;
-    }
-
-    public void setProductPricingMethod(PricingMethod productPricingMethod) {
-        this.productPricingMethod = productPricingMethod;
     }
 
     public int getProductCostPerPricingMethod() {
@@ -70,6 +46,10 @@ public class Product {
 
     public void setProductWeightIfWeighted(int productWeightIfWeighted) {
         this.productWeightIfWeighted = productWeightIfWeighted;
+    }
+
+    public PricingMethod getProductPricingMethod() {
+        return productPricingMethod;
     }
 
     public void setDiscountsApplied(String discountsApplied) {
