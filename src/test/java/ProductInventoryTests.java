@@ -1,3 +1,4 @@
+import Controller.Checkout;
 import Entities.Product;
 import Services.CheckoutService;
 import Services.DiscountService;
@@ -16,20 +17,16 @@ import static junit.framework.TestCase.assertNotSame;
 @RunWith(JUnit4.class)
 public class ProductInventoryTests {
 
-    @Autowired
     InventoryService inventoryService;
+    Checkout checkout;
+    CheckoutService checkoutService;
 
-//    @Before
-//    public void setUp() {
-//        inventoryService = InventoryService.getInstance();
-//    }
-//
-//    @Before
-//    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
-//        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
-//        inventoryInstance.setAccessible(true);
-//        inventoryInstance.set(null, null);
-//    }
+    @Before
+    public void setUp() {
+        checkout = new Checkout();
+        checkoutService = new CheckoutService(checkout);
+        inventoryService = new InventoryService(checkoutService);
+    }
 
     @Test
     public void validateThatAUnitBasedProductCanBeCreated() {

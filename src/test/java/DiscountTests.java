@@ -1,4 +1,6 @@
+import Controller.Checkout;
 import Entities.Discount;
+import Services.CheckoutService;
 import Services.DiscountService;
 import org.junit.After;
 import org.junit.Before;
@@ -13,14 +15,16 @@ import static junit.framework.TestCase.assertEquals;
 
 @RunWith(JUnit4.class)
 public class DiscountTests {
-
-    @Autowired
+    Checkout checkout;
     DiscountService discountService;
+    CheckoutService checkoutService;
 
-//    @Before
-//    public void setUp() {
-//        discountService = DiscountService.getInstance();
-//    }
+    @Before
+    public void setUp() {
+        checkout = new Checkout();
+        checkoutService = new CheckoutService(checkout);
+        discountService = new DiscountService(checkoutService);
+    }
 //
 //    @Before
 //    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
