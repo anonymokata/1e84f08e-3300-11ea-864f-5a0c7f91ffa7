@@ -1,8 +1,13 @@
 package Controller;
 
+import Entities.Discount;
+import Entities.Product;
 import Services.CheckoutService;
 import Services.DiscountService;
 import Services.InventoryService;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class Checkout {
 
@@ -15,9 +20,13 @@ public class Checkout {
          - Delete Item at Checkout. Return value should be void or a success response string for item in the cart removal.
      */
 
-    static InventoryService inventoryService = InventoryService.getInstance();
-    static CheckoutService checkoutService = CheckoutService.getInstance();
-    static DiscountService discountService = DiscountService.getInstance();
+
+    CheckoutService checkoutService = new CheckoutService(this);
+
+    public HashMap<String, Product> productInventory = new HashMap<String, Product>();
+    public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
+    InventoryService inventoryService = new InventoryService(checkoutService);
+    DiscountService discountService = new DiscountService(checkoutService);
 
     //Make this class a singleton so that the services aren't instantied at every call.
 
@@ -65,16 +74,16 @@ public class Checkout {
 
     //Singleton implementation
     /*************************************************************************************/
-
-    private static Checkout obj;
-
-    private Checkout() {}
-
-    public static synchronized Checkout getInstance() {
-        if (obj == null)
-            obj = new Checkout();
-        return obj;
-    }
+//
+//    private static Checkout obj;
+//
+//    private Checkout() {}
+//
+//    public static synchronized Checkout getInstance() {
+//        if (obj == null)
+//            obj = new Checkout();
+//        return obj;
+//    }
 
     /*************************************************************************************/
 }

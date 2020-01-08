@@ -1,5 +1,6 @@
 package Services;
 
+import Controller.Checkout;
 import Entities.Discount;
 import Entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +21,22 @@ public class DiscountService {
         This map is static so that this class does not need to be instantiated by the checkout service.
      */
 
+    CheckoutService checkoutService;
 
-    InventoryService inventoryService;
-    public HashMap<String, List<Discount>> allActiveDiscounts = new HashMap<String, List<Discount>>();
+    public HashMap<String, List<Discount>> allActiveDiscounts;
 
     public Discount createDiscount(String productIdAssociatedToDiscount, String uniqueDiscountName, int valueBasedOnDiscountType, int quantityRequiredTriggerDiscount, String discountType, String valueType) {
         Discount discount = new Discount(productIdAssociatedToDiscount, uniqueDiscountName, valueBasedOnDiscountType, quantityRequiredTriggerDiscount, Discount.DiscountType.valueOf(discountType), Discount.ValueType.valueOf(valueType));
-
         //Conditional accounts for Null Pointer Exceptions by validating that there is a size greater than zero for the Discounts HashMap.
         //Checks if there are any discounts associated to the product for the current discount being created.
+        allActiveDiscounts = checkoutService.getDiscountInventory() != null ? checkoutService.getDiscountInventory() : new HashMap<>();
         if (allActiveDiscounts.size() > 0 && allActiveDiscounts.containsKey(productIdAssociatedToDiscount)) {
             allActiveDiscounts.get(discount.getProductIdAssociated()).add(discount);
         } else {
             List<Discount> currentDiscount = new ArrayList<Discount>();
             currentDiscount.add(discount);
             allActiveDiscounts.put(discount.getProductIdAssociated(), currentDiscount);
+            checkoutService.setDiscountInventory(discount.getUniqueDiscountName(), currentDiscount);
         }
         return discount;
     }
@@ -44,12 +46,14 @@ public class DiscountService {
 
         //Conditional accounts for Null Pointer Exceptions by validating that there is a size greater than zero for the Discounts HashMap.
         //Checks if there are any discounts associated to the product for the current discount being created.
+        allActiveDiscounts = checkoutService.getDiscountInventory() != null ? checkoutService.getDiscountInventory() : new HashMap<>();
         if (allActiveDiscounts.size() > 0 && allActiveDiscounts.containsKey(productIdAssociatedToDiscount)) {
             allActiveDiscounts.get(discount.getProductIdAssociated()).add(discount);
         } else {
             List<Discount> currentDiscount = new ArrayList<Discount>();
             currentDiscount.add(discount);
             allActiveDiscounts.put(discount.getProductIdAssociated(), currentDiscount);
+            checkoutService.setDiscountInventory(discount.getUniqueDiscountName(), currentDiscount);
         }
         return discount;
     }
@@ -88,9 +92,9 @@ public class DiscountService {
     //Returns all discounts associated to a specific product.
     public List<Discount> getRelevantDiscountsForProduct(String productId) {
         List<Discount> discounts = new ArrayList<Discount>();
-        for (String indexProductId : allActiveDiscounts.keySet()) {
+        for (String indexProductId : checkoutService.getDiscountInventory().keySet()) {
             if (indexProductId == productId) {
-                discounts = (allActiveDiscounts.get(indexProductId));
+                discounts = (checkoutService.getDiscountInventory().get(indexProductId));
             }
         }
         return discounts;
@@ -329,17 +333,20 @@ public class DiscountService {
         return runningWeightTotal;
     }
 
+    public DiscountService(CheckoutService checkoutService) {
+        this.checkoutService = checkoutService;
+    }
 
 
     //Singleton implementation
     /*************************************************************************************/
-    private static DiscountService obj;
-
-    private DiscountService() {}
-
-    public static synchronized DiscountService getInstance() {
-        if (obj == null)
-            obj = new DiscountService();
-        return obj;
-    }
+//    private static DiscountService obj;
+//
+//    private DiscountService() {}
+//
+//    public static synchronized DiscountService getInstance() {
+//        if (obj == null)
+//            obj = new DiscountService();
+//        return obj;
+//    }
 }

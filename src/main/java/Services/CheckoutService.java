@@ -1,5 +1,7 @@
 package Services;
 
+import Controller.Checkout;
+import Entities.Discount;
 import Entities.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,9 +9,11 @@ import java.util.List;
 
 public class CheckoutService {
     public HashMap<String, List<Product>> checkoutCart = new HashMap<String, List<Product>>();
-    DiscountService discountService = DiscountService.getInstance();
-    InventoryService inventoryService = InventoryService.getInstance();
-    private int currentTotal;
+    Checkout checkout;
+    InventoryService inventoryService = new InventoryService(this);
+    DiscountService discountService = new DiscountService(this);
+
+
 
     public HashMap<String, List<Product>> scanItem(Product scannedProduct) {
 
@@ -145,16 +149,37 @@ public class CheckoutService {
        return calculateTotal();
     }
 
+    public CheckoutService(Checkout checkout) {
+        this.checkout = checkout;
+    }
+
+    public void setProductInventory(String productId, Product product) {
+        checkout.productInventory.put(productId, product);
+
+    }
+
+    public HashMap<String, Product> getProductInventory() {
+        return checkout.productInventory;
+    }
+
+    public void setDiscountInventory(String productId, List<Discount> discounts) {
+        checkout.allActiveDiscounts.put(productId, discounts);
+    }
+
+    public HashMap<String, List<Discount>> getDiscountInventory() {
+        return checkout.allActiveDiscounts;
+    }
+
     //Singleton implementation
     /*************************************************************************************/
-    private static CheckoutService obj;
-
-    private CheckoutService() {}
-
-    public static synchronized CheckoutService getInstance() {
-        if (obj == null)
-            obj = new CheckoutService();
-        return obj;
-    }
+//    private static CheckoutService obj;
+//
+//    private CheckoutService() {}
+//
+//    public static synchronized CheckoutService getInstance() {
+//        if (obj == null)
+//            obj = new CheckoutService();
+//        return obj;
+//    }
 
 }

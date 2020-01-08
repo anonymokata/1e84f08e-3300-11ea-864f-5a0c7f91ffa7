@@ -8,13 +8,21 @@ import java.util.HashMap;
 
 public class InventoryService {
     // Created products will be stored in the productInventory HashMap.
-    private HashMap<String, Product> productInventory = new HashMap<String, Product>();
+    CheckoutService checkoutService;
+    private HashMap<String, Product> productInventory;
 
     // Using Method overloading for API ease of use.
     //This method is used when the product is priced per unit.
     public Product createInventoryProduct(String productId, String productPricingMethod, int costOfProductPerPricingMethod) {
         Product product = new Product(productId, Product.PricingMethod.valueOf(productPricingMethod), costOfProductPerPricingMethod);
-        productInventory.put(product.getProductId(), product);
+        if (checkoutService.getProductInventory() == null ) {
+            checkoutService.setProductInventory(productId, product);
+            productInventory = checkoutService.getProductInventory();
+        } else {
+            productInventory = checkoutService.getProductInventory();
+            checkoutService.setProductInventory(productId, product);
+        }
+
         return product;
     }
 
@@ -22,7 +30,8 @@ public class InventoryService {
     //This method is used when the product is priced per weight.
     public Product createInventoryProduct(String productId, String productPricingMethod, int costOfProductPerPricingMethod, int productWeightIfWeighted) {
         Product product = new Product(productId, Product.PricingMethod.valueOf(productPricingMethod), costOfProductPerPricingMethod, productWeightIfWeighted);
-        productInventory.put(product.getProductId(), product);
+        checkoutService.setProductInventory(product.getProductId(), product);
+        productInventory = checkoutService.getProductInventory();
         return product;
     }
 
@@ -41,19 +50,23 @@ public class InventoryService {
     }
 
     public Product getProductFromInventory(String productId) {
-        return productInventory.get(productId);
+        return checkoutService.getProductInventory().get(productId);
+    }
+
+    public InventoryService(CheckoutService checkoutService) {
+        this.checkoutService = checkoutService;
     }
 
 
     //Singleton implementation
     /*************************************************************************************/
-    private static InventoryService obj;
-
-    private InventoryService() {}
-
-    public static synchronized InventoryService getInstance() {
-        if (obj == null)
-            obj = new InventoryService();
-        return obj;
-    }
+//    private static InventoryService obj;
+//
+//    private InventoryService() {}
+//
+//    public static synchronized InventoryService getInstance() {
+//        if (obj == null)
+//            obj = new InventoryService();
+//        return obj;
+//    }
 }
