@@ -134,7 +134,7 @@ public class DiscountService {
                         if (discount.getValueType() == Discount.ValueType.Currency) {
                             cloneProduct.setProductCostPerPricingMethod((cloneProduct.getProductCostPerPricingMethod() + getDeductionOfTotalWeightCost(cloneProduct.getProductWeightIfWeighted(), discount.getValueBasedOnDiscountType(), discount.getLimitForDiscountApplication())) * getDiscountLimit(discount));
                         } else {
-                            cloneProduct.setProductCostPerPricingMethod((int) getPercentageOffValue(cloneProduct, deductionFromTotalWeightCost));
+                            cloneProduct.setProductCostPerPricingMethod((int) getPercentageOffValue(cloneProduct, deductionFromTotalWeightCost, discount.getLimitForDiscountApplication()));
                         }
                         cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
                         weightDiscountLimit += cloneProduct.getProductWeightIfWeighted();
@@ -170,6 +170,7 @@ public class DiscountService {
                         }
 
                         discountApplicationCounter = 0;
+                        discountLimitCounter++;
 
                     } else {
                         discountApplicationCounter++;
@@ -182,10 +183,10 @@ public class DiscountService {
                     //
                     int discountEligibility = (cloneProduct.getProductWeightIfWeighted() / (discount.getQuantityRequiredTriggerDiscount() * convertDoubleToInt) / 2);
                     if (cloneProduct.getProductWeightIfWeighted() >= discount.getQuantityRequiredTriggerDiscount() &&
-                            isLimitExceeded(cloneProduct, discount, discountLimitCounter)) {
+                            !isLimitExceeded(cloneProduct, discount, weightDiscountLimit)) {
 
                         if (discount.getValueType() == Discount.ValueType.Currency) {
-                            cloneProduct.setProductCostPerPricingMethod(((calculateCostWithoutDiscountForWeightedItem(cloneProduct)) / convertDoubleToInt) - (cloneProduct.getProductCostPerPricingMethod()));
+                            cloneProduct.setProductCostPerPricingMethod(((calculateCostWithoutDiscountForWeightedItem(cloneProduct))) - (cloneProduct.getProductCostPerPricingMethod()));
                         } else {
                             double percentOff = (double) discount.getValueBasedOnDiscountType() / percentageConverter;
                             double baseValue = ((((cloneProduct.getProductCostPerPricingMethod() * (discount.getQuantityRequiredTriggerDiscount()) * convertDoubleToInt) / convertDoubleToInt) * percentOff));
@@ -193,18 +194,21 @@ public class DiscountService {
                             cloneProduct.setProductCostPerPricingMethod((calculateCostWithoutDiscountForWeightedItem(cloneProduct)) - totalToSubtract);
                         }
                         discountApplicationCounter++;
-                    } else if (!cloneProduct.getDiscountsApplied().contains(discount.getUniqueDiscountName()) && cloneProduct.getProductWeightIfWeighted() >= discount.getQuantityRequiredTriggerDiscount() && discount.getLimitForDiscountApplication() > discountApplicationCounter) {
-                        cloneProduct.setProductCostPerPricingMethod((calculateCostWithoutDiscountForWeightedItem(cloneProduct)) - (cloneProduct.getProductCostPerPricingMethod()));
-                        discountApplicationCounter++;
+                    } else {
+                        cloneProduct.setProductCostPerPricingMethod((calculateCostWithoutDiscountForWeightedItem(cloneProduct)));
                     }
+                    discountApplicationCounter++;
+                    discountLimitCounter++;
+                    weightDiscountLimit += (discount.getQuantityRequiredTriggerDiscount() * convertDoubleToInt);
                 }
                 products.set(counter, cloneProduct);
                 cloneProduct.setDiscountsApplied(discount.getUniqueDiscountName());
-                discountLimitCounter++;
+
             }
         }
         return products;
     }
+
 
     public List<Product> applyXforyCurrencyBased(List<Product> products, Discount discount) {
         int discountApplicationCounter = 0;
@@ -286,7 +290,8 @@ public class DiscountService {
     }
 
     private int calculateCostWithoutDiscountForWeightedItem(Product product) {
-        return ((product.getProductCostPerPricingMethod() * product.getProductWeightIfWeighted()) / 100);
+        int result = ((product.getProductCostPerPricingMethod() * product.getProductWeightIfWeighted()) / 100);
+        return result;
     }
 
     public double getPercentageOffValue(int totalCost, int percentOff) {
@@ -294,10 +299,11 @@ public class DiscountService {
         return totalCost - ((totalCost * percentOff) / convertDoubleToInt);
     }
 
-    public double getPercentageOffValue(Product product, int percentOff) {
+    public double getPercentageOffValue(Product product, int percentOff, int limit) {
         int totalCost = calculateCostWithoutDiscountForWeightedItem(product);
+        limit = limit == 0 ? 1 : limit;
         double percentConversion = (double) percentOff / (double) convertDoubleToInt;
-        double result = totalCost - ((product.getProductWeightIfWeighted() * percentConversion));
+        double result = totalCost - (((limit * convertDoubleToInt) * percentConversion));
         return result;
     }
 
