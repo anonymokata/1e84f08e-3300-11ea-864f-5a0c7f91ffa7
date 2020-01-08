@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 
@@ -15,19 +16,20 @@ import static junit.framework.TestCase.assertNotSame;
 @RunWith(JUnit4.class)
 public class ProductInventoryTests {
 
+    @Autowired
     InventoryService inventoryService;
 
-    @Before
-    public void setUp() {
-        inventoryService = InventoryService.getInstance();
-    }
-
-    @Before
-    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
-        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
-        inventoryInstance.setAccessible(true);
-        inventoryInstance.set(null, null);
-    }
+//    @Before
+//    public void setUp() {
+//        inventoryService = InventoryService.getInstance();
+//    }
+//
+//    @Before
+//    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+//        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
+//        inventoryInstance.setAccessible(true);
+//        inventoryInstance.set(null, null);
+//    }
 
     @Test
     public void validateThatAUnitBasedProductCanBeCreated() {

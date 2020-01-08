@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.FilterFactory;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -19,28 +20,28 @@ import static junit.framework.TestCase.assertEquals;
 @RunWith(JUnit4.class)
 public class CartProductTests {
 
+    @Autowired
     InventoryService inventoryService;
+    @Autowired
     CheckoutService checkoutService;
+    @Autowired
     DiscountService discountService;
-
-    @Before
-    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
-        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
-        Field checkoutInstance = CheckoutService.class.getDeclaredField("obj");
-        Field discountInstance = DiscountService.class.getDeclaredField("obj");
-        inventoryInstance.setAccessible(true);
-        checkoutInstance.setAccessible(true);
-        discountInstance.setAccessible(true);
-
-        inventoryInstance.set(null, null);
-        checkoutInstance.set(null, null);
-        discountInstance.set(null, null);
-    }
+//
+//    @Before
+//    public void resetSingletons() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException  {
+//        Field inventoryInstance = InventoryService.class.getDeclaredField("obj");
+//        Field checkoutInstance = CheckoutService.class.getDeclaredField("obj");
+//        Field discountInstance = DiscountService.class.getDeclaredField("obj");
+//        inventoryInstance.setAccessible(true);
+//        checkoutInstance.setAccessible(true);
+//        discountInstance.setAccessible(true);
+//
+//        inventoryInstance.set(null, null);
+//        checkoutInstance.set(null, null);
+//        discountInstance.set(null, null);
+//    }
     @Test
     public void validateThatProductsBeingScannedAreAddedToCheckoutCart() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
 
         HashMap<String, List<Product>> cartAtCheckout = new HashMap<String, List<Product>>();
 
@@ -71,9 +72,6 @@ public class CartProductTests {
 
     @Test
     public void validateCorrectTotalProducedFromCartWithoutDiscount() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
 
@@ -85,9 +83,6 @@ public class CartProductTests {
 
     @Test
     public void validateItemRemovalFromCartAndCalculateTotal() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 100);
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
@@ -101,9 +96,6 @@ public class CartProductTests {
 
     @Test
     public void validateThatDiscountsAreAppliedAtCheckout() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
         Product chickenSoup = new Product("Chicken Soup", Product.PricingMethod.Unit, 100);
         Product potatoSoup = new Product("Potato Soup", Product.PricingMethod.Unit, 100);
         Product tomatoSoup = new Product("Tomato Soup", Product.PricingMethod.Unit, 100);
@@ -122,9 +114,6 @@ public class CartProductTests {
 
     @Test
     public void validateWeightedItemDiscountsForCurrency() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
 
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 300);
 
@@ -140,9 +129,6 @@ public class CartProductTests {
 
     @Test
     public void validateWeightedItemDiscountsForPercentage() {
-        inventoryService = InventoryService.getInstance();
-        checkoutService = CheckoutService.getInstance();
-        discountService = DiscountService.getInstance();
 
         Product groundBeef = new Product("Ground Beef", Product.PricingMethod.Weighted, 300);
 
